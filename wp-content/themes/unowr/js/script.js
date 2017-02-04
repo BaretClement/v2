@@ -200,7 +200,9 @@ $(document).ready(function(){
           index++
         }
 
-        var formResult = {}
+        var formResult = {
+          'action': 'ajax_filter'
+        }
         var currentKey = ''
         changeForm(questions[0])
         var conversationalForm = new cf.ConversationalForm({
@@ -211,20 +213,17 @@ $(document).ready(function(){
             if (questions[index] != null) {
               currentKey = questions[index].key
               formResult[currentKey] = $('cf-chat-response').last().find('text').html()
+              formResult['question-index'] = index;
               console.log('* * * * * * * * * * * * * * * * * * * * * * * * * * * * *')
               console.log('formResult', formResult)
-            //   jQuery.post(
-            //     'http://v2.local/wp-admin/admin-ajax.php', {
-            //       'action': 'ajax_filter',
-            //       'ambiance': 'chill',
-            //       'agenda': 'jeudi 15 février 2017 9:05',
-            //       'type_de_cuisine': 'chinois'
-            //     },
-            //     function(response){
-            //       console.log(JSON.parse(response));
-            //     }
-            //   );
-              changeForm(questions[index])
+              jQuery.post(
+                '/wp-admin/admin-ajax.php', formResult,
+                function(response){
+                  var json = JSON.parse(response);
+                  changeForm(json);
+                  console.log(JSON.parse(response));
+                }
+              );
             }else {
               submitform()
             }
