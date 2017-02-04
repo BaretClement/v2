@@ -4,8 +4,10 @@
 
 body {
     font-family: 'Lato', sans-serif;
+    font-size: 16px;
     font-weight: 300 !important;
     color: #1B1C1D !important;
+    line-height: 1.5em !important;
 } 
 footer {
   font-size: 14px !important;
@@ -16,10 +18,29 @@ footer {
   color: #FFFFFF;
 }
 h1, h2, h3, h4, h5 {
-    font-family: 'Lato', sans-serif;
-    font-weight: bold !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 900 !important;
+    text-transform: uppercase;
 }
-
+h1.title{
+  font-size: 4rem !important;
+  margin-bottom: 15px;
+}
+h2.introduction{
+  font-weight: 300 !important;
+  font-size: 21px !important;
+}
+p{
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-weight: 500 !important;
+}
+p.subtitle{
+  margin-bottom: 50px !important;
+}
+p.footer{
+  font-size: 1rem !important;
+}
 /************************************************/
 /************* ADDITIONAL SETTINGS **************/
 /************************************************/
@@ -49,6 +70,7 @@ div.no.padding.column {
   font-weight: 900;
 }
 .first-part.height {min-height: calc(100vh - 95.33px)}
+.single-part.height {min-height: calc(100vh - 155.33px)}
 .full.height {min-height: 100vh}
 .half.height {min-height: 50vh !important}
 .quarter.height {min-height: 25vh}
@@ -60,8 +82,8 @@ div.no.padding.column {
 }
 
 /******************* COLORS ********************/
-.light.grey {background: #FAFAFA; color: rgba(0, 0, 0, 0.87)}
-.grey {background: #EEEEEE; color: rgba(0, 0, 0, 0.87)}
+
+.light.grey {background: #FAFAFA !important; color: rgba(0, 0, 0, 0.87) !important}
 .black {background: #1B1C1D !important; color: #FFFFFF;}
 .white {background: #FFFFFF !important; color: #1B1C1D !important}
 
@@ -98,7 +120,9 @@ div.item.menu:hover {
     background: rgba(255, 255, 255, 0.08) !important;
     color: #ffffff !important;
 }
-
+.ui.inverted.vertical.masthead.center.aligned.no.padding.segment{
+  padding-bottom: 0!important;
+}
 /************************************************/
 /********************* PARTS ********************/
 /************************************************/
@@ -106,11 +130,47 @@ div.item.menu:hover {
 #user-part {
   padding:0 !important;
 }
+#intro-content::before{
+    content: "Celui dont vous avez réellement envie !";
+    position: relative !important;
+    top: 550px;
+    left: 30% !important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    position: relative;
+    padding: 12px 24px 12px 24px;
+    min-height: 40px !important;
+    background: #f8f8f8 !important;
+    border-radius: 0 20px 20px 20px !important;
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -webkit-transform-origin: 0% 0%;
+    -moz-transform-origin: 0% 0%;
+    -o-transform-origin: 0% 0%;
+    -ms-transform-origin: 0% 0%;
+    transform-origin: 0% 0%;
+    -webkit-transform: translateY(-10px) translateX(10px) scale(.001,.001);
+    -moz-transform: translateY(-10px) translateX(10px) scale(.001,.001);
+    -o-transform: translateY(-10px) translateX(10px) scale(.001,.001);
+    -ms-transform: translateY(-10px) translateX(10px) scale(.001,.001);
+    transform: translateY(-10px) translateX(10px) scale(.001,.001);
+    will-change: transform,opacity,background;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+    height: auto;
+    color: #aaafb0;
+}
+}
 #restaurant-part {
-  background-size: cover; 
+  background-size: cover !important; 
   background-position: top right;
 }
 #how-to-part{
+  padding-top: 93.33px !important;
   padding-bottom: 0 !important;
 }
 #mock-up {
@@ -136,7 +196,6 @@ div.item.menu:hover {
 #social-part .black.row {
   padding-top: 50px;
 }
-
 
 /************************************************/
 /********************* PAGES ********************/
@@ -282,8 +341,10 @@ cf-chat-response.user text thinking {
 /******************** MOBILE ********************/
 @media only screen and (max-width: 767px) {
     h1 {font-size: 1.8rem !important;}
+    h1.title{font-size: 1.8rem !important;}
     h2 {font-size: 1.5rem !important;}
     h3 {font-size: 1.3rem !important;}
+    p.subtitle{margin-bottom: 15px !important;}
     cf-chat-response {max-width: 90% !important;}
     {padding: 50px 0 !important;}
     #article {padding: 50px 1rem 1rem 1rem !important;}
@@ -300,11 +361,17 @@ cf-chat-response.user text thinking {
       margin: 0em 0em !important;
       box-shadow: none !important;
       padding: 3rem 1rem !important;
-    }
+    }  
+#intro-content::before{
+  display: none;
+}
 }
 
 /************** MOBILE & TABLET **************/
 @media only screen and (max-width: 991px) {
+  .stackable, .column{
+    width: 100% !important;
+  }
   #multi-content-part{
     border: 4px dotted #E0E0E0;
   }
@@ -325,7 +392,28 @@ cf-chat-response.user text thinking {
     padding-bottom: 50px;
   }
   #how-to-part,.ui.large.header {text-align: center !important}
-  img.large-screen{display: none !important}
+  img.large-screen{display: none !important
+  }
+  #title.left.floated.column{
+    padding-left: 60px;
+    padding-right: 15%;
+  }
+  .first-content{
+    padding-left: 60px;
+  }
+  .first-content::after{
+    z-index: 0 !important;
+    bottom: 200px;
+    left: 25px !important; 
+  }
+  #concept .first-content::after{
+    filter: invert(1) !important;
+    -webkit-filter: invert(1) !important;
+    -moz-filter: invert(1) !important;
+    -o-filter: invert(1) !important;
+    -ms-filter: invert(1) !important;
+  }
+
 }
 /******************** TABLET ********************/
 @media only screen and (min-width: 768px) and (max-width: 991px) {

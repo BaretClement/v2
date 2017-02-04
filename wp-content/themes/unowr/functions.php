@@ -571,12 +571,107 @@ function my_save_extra_profile_fields( $user_id ) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+add_action( 'wp_ajax_ajax_filter', 'ajax_filter' );
+add_action( 'wp_ajax_nopriv_ajax_filter', 'ajax_filter' );
 
+function ajax_filter() {
 
+	global $wpdb;
 
+	$taxQuery = array();
+	$metaQuery = array();
 
+	if(isset($_POST)){
+		if(isset($_POST['ambiance']) && !empty($_POST['ambiance'])){
+			array_push($taxQuery, array(
+				'taxonomy' => 'ambiance',
+				'field' 		=> 'slug',
+				'terms'    => $_POST['ambiance']
+			));
+		}
+		if(isset($_POST['agenda']) && !empty($_POST['agenda'])){
+			array_push($taxQuery, array(
+				'taxonomy' => 'agenda',
+				'field' 		=> 'slug',
+				'terms'    => $_POST['agenda']
+			));
+		}
+		if(isset($_POST['occasion']) && !empty($_POST['occasion'])){
+			array_push($taxQuery, array(
+				'taxonomy' => 'occasion',
+				'field' 		=> 'slug',
+				'terms'    => $_POST['occasion']
+			));
+		}
+		if(isset($_POST['type_de_cuisine']) && !empty($_POST['type_de_cuisine'])){
+			array_push($taxQuery, array(
+				'taxonomy' => 'type_de_cuisine',
+				'field' 		=> 'slug',
+				'terms'    => $_POST['type_de_cuisine']
+			));
+		}
+		if(isset($_POST['prix_moyen']) && !empty($_POST['prix_moyen'])){
+			$metaQuery =  array(
+				'relation' => 'AND',
+				array(
+					'key'	  		=> 'prix_moyen',
+					'compare' 	=> '<=',
+					'value'	  	=> $_POST['prix_moyen']
+				)
+			);
+		}
+	}
 
+	$search = array(
+		'post_type' => 'restaurant',
+		'numberposts' => -1,
+		'posts_per_page' => -1,
+		'tax_query' => $taxQuery,
+		'meta_query' => $metaQuery
+	);
 
+	global $post;
+	$query = new WP_Query($search);
+	$posts = $query->get_posts();
 
+	$res = array();
+	foreach ($posts as $key => $post) {
 
+		if(isset($post->post_title)){
+			$cat = get_the_terms($post->ID, 'type_de_cuisine');
+			$ambiances = get_the_terms($post->ID, 'ambiance');
+			$array_ambiances = array();
+
+			foreach ($ambiances as $k => $val) {
+				$array_ambiances[] = $val->name;
+			}
+
+			$customFieds = get_post_custom($post->ID);
+			$res[] = array(
+				'title' => $post->post_title,
+				'name' => $post->post_name,
+				'guid' => $post->guid,
+				'id' => $post->ID,
+				'content' => $post->post_content,
+				'prenom_du_contact' => $customFieds['prenom_du_contact'][0],
+				'nom_du_contact' => $customFieds['nom_du_contact'][0],
+				'nom_du_restaurant' => $customFieds['nom_du_restaurant'][0],
+				'adresse' => $customFieds['adresse'][0],
+				'code_postal' => $customFieds['code_postal'][0],
+				'ville' => $customFieds['ville'][0],
+				'telephone' => $customFieds['telephone'][0],
+				'email' => $customFieds['email'][0],
+				'specialite' => $customFieds['specialite'][0],
+				'prix_moyen' => $customFieds['prix_moyen'][0],
+				'category' => $cat[0]->name,
+				'subcategory' => $cat[1]->name,
+				"ambiances" => $array_ambiances,
+			);
+
+		}
+	}
+
+	echo json_encode($res);
+	wp_die();
+}
 

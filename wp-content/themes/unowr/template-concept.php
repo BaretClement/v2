@@ -44,7 +44,7 @@ get_header( '' ); ?>
 		<!-- CONCEPT PART -->
 
 		<!-- IDEA PART -->
-		<div id="idea-part" class="ui full height center aligned grey grid">
+		<div id="idea-part" class="ui full height center aligned light grey grid">
 			<div class="row">
 				<div class="sixteen middle aligned wide column">
 					<img src="<?php echo get_template_directory_uri(); ?>/css/img/light-bulb-1.svg" class="ui small margin auto image">

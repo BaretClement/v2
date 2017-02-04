@@ -57,7 +57,7 @@ function mla_plugin_loader_reporting_action () {
  */
 require_once( MLA_PLUGIN_PATH . 'tests/class-mla-tests.php' );
 
-$mla_plugin_loader_error_messages .= MLATest::min_php_version( '5.4' );
+$mla_plugin_loader_error_messages .= MLATest::min_php_version( '5.3' );
 $mla_plugin_loader_error_messages .= MLATest::min_WordPress_version( '3.5.0' );
 
 if ( ! empty( $mla_plugin_loader_error_messages ) ) {
@@ -72,7 +72,6 @@ if ( ! empty( $mla_plugin_loader_error_messages ) ) {
 	 * Minimum support functions required by all other components
 	 */
 	require_once( MLA_PLUGIN_PATH . 'includes/class-mla-core.php' );
-	//add_action( 'plugins_loaded', 'MLACore::mla_plugins_loaded_action_wpml', 1 );
 	add_action( 'plugins_loaded', 'MLACore::mla_plugins_loaded_action', 0x7FFFFFFF );
 	add_action( 'init', 'MLACore::initialize', 0x7FFFFFFF );
 
@@ -118,24 +117,20 @@ if ( ! empty( $mla_plugin_loader_error_messages ) ) {
 		if ( isset( $_REQUEST['action'] ) ) {
 			if ( in_array( $_REQUEST['action'], $ajax_exceptions ) ) {
 				$ajax_only = false;
-			}
-		}
-
-		//Look for multi-lingual terms updates
-		if ( 'mla-update-compat-fields' == $_REQUEST['action'] ) {
-			global $sitepress;
+			} elseif ( 'mla-update-compat-fields' == $_REQUEST['action'] ) {
+				global $sitepress;
 			
-			if ( is_object( $sitepress ) || class_exists( 'Polylang' ) ) {
-				$ajax_only = false;
-			}
-		}
-		
-		//Look for WPML flat taxonomy autocomplete
-		if ( isset( $_GET['action'] ) && ( 'ajax-tag-search' == $_GET['action'] ) ) {
-			global $sitepress;
+				//Look for multi-lingual terms updates
+				if ( is_object( $sitepress ) || class_exists( 'Polylang' ) ) {
+					$ajax_only = false;
+				}
+			} elseif ( 'ajax-tag-search' == $_REQUEST['action'] ) {
+				global $sitepress;
 
-			if ( is_object( $sitepress ) ) {
-				$ajax_only = false;
+				//Look for WPML flat taxonomy autocomplete
+				if ( is_object( $sitepress ) ) {
+					$ajax_only = false;
+				}
 			}
 		}
 

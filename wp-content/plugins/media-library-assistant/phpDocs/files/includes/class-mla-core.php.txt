@@ -21,7 +21,7 @@ class MLACore {
 	 *
 	 * @var	string
 	 */
-	const CURRENT_MLA_VERSION = '2.40';
+	const CURRENT_MLA_VERSION = '2.41';
 
 	/**
 	 * Slug for registering and enqueueing plugin style sheets (moved from class-mla-main.php)
@@ -85,6 +85,15 @@ class MLACore {
 	 * @var	integer
 	 */
 	const MLA_DEBUG_CATEGORY_THUMBNAIL = 0x00000008;
+
+	/**
+	 * Constant to log IPTC/EXIF/XMP/PDF metadata activity
+	 *
+	 * @since 2.41
+	 *
+	 * @var	integer
+	 */
+	const MLA_DEBUG_CATEGORY_METADATA = 0x00000010;
 
 	/**
 	 * Slug for adding plugin submenu
@@ -309,6 +318,7 @@ class MLACore {
 	 * @return	void
 	 */
 	public static function initialize( ) {
+		//error_log( __LINE__ . ' DEBUG: MLACore::initialize $_REQUEST = ' . var_export( $_REQUEST, true ), 0 );
 		if ( 'disabled' == MLACore::mla_get_option( MLACoreOptions::MLA_FEATURED_IN_TUNING ) ) {
 			MLACore::$process_featured_in = false;
 		}
@@ -527,7 +537,12 @@ class MLACore {
 			MLACore::$mla_debug_level = MLA_DEBUG_LEVEL;
 			$mla_reporting = trim( MLACore::mla_get_option( MLACoreOptions::MLA_DEBUG_REPLACE_LEVEL ) );
 			if ( strlen( $mla_reporting ) ) {
-				$mla_reporting = 0 + $mla_reporting; 
+				if ( ctype_digit( $mla_reporting ) ) {
+					$mla_reporting = intval( $mla_reporting ); 
+				} else{
+					$mla_reporting = hexdec( $mla_reporting ); 
+				}
+
 				if ( $mla_reporting )  {
 					MLACore::$mla_debug_level = $mla_reporting | 1;
 				} else {

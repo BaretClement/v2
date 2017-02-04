@@ -653,8 +653,8 @@ class MLASettings_IPTCEXIF {
 } // class MLASettings_IPTCEXIF
 
 /*
- * Actions are added here, when the source file is loaded, because the MLA_Example_List_Table
- * object is created too late to be useful.
+ * Actions are added here, when the source file is loaded, because the mla_compose_iptc_exif_tab
+ * function is called too late to be useful.
  */
 add_action( 'admin_enqueue_scripts', 'MLASettings_IPTCEXIF::mla_admin_enqueue_scripts' );
 ?>

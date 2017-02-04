@@ -67,7 +67,7 @@
  * https://wordpress.org/support/topic/woocommerce-product-category-2/
  *
  * @package WooCommerce Fixit
- * @version 1.27
+ * @version 1.28
  */
 
 /*
@@ -75,7 +75,7 @@ Plugin Name: WooCommerce Fixit
 Plugin URI: http://fairtradejudaica.org/media-library-assistant-a-wordpress-plugin/
 Description: Adds a Tools/Woo Fixit submenu with buttons to perform a variety of MLA/WooCommerce repair and enhancement operations.
 Author: David Lingren
-Version: 1.27
+Version: 1.28
 Author URI: http://fairtradejudaica.org/our-story/staff/
 
 Copyright 2014-2015 David Lingren
@@ -138,6 +138,16 @@ class Woo_Fixit {
 	 */
 	private static $last_product = '';
 	const INPUT_LAST_PRODUCT = 'upper';
+
+	/**
+	 * Content Template for Product Image/Product Gallery Images
+	 *
+	 * @since 1.28
+	 *
+	 * @var	string
+	 */
+	private static $content_template = '';
+	const INPUT_CONTENT_TEMPLATE = 'template';
 
 	/**
 	 * Process term assignments for Product Category
@@ -268,6 +278,8 @@ class Woo_Fixit {
 		self::$first_product = isset( $_REQUEST[ self::SLUG_PREFIX . self::INPUT_FIRST_PRODUCT ] ) ? $_REQUEST[ self::SLUG_PREFIX . self::INPUT_FIRST_PRODUCT ] : '';
 		self::$last_product = isset( $_REQUEST[ self::SLUG_PREFIX . self::INPUT_LAST_PRODUCT ] ) ? $_REQUEST[ self::SLUG_PREFIX . self::INPUT_LAST_PRODUCT ] : '';
 
+		self::$content_template = isset( $_REQUEST[ self::SLUG_PREFIX . self::INPUT_CONTENT_TEMPLATE ] ) ? trim( $_REQUEST[ self::SLUG_PREFIX . self::INPUT_CONTENT_TEMPLATE ] ) : self::$content_template;
+
 		self::$process_category = isset( $_REQUEST[ self::SLUG_PREFIX . self::INPUT_PROCESS_CATEGORY ] ) ? true : false;
 		$category_attr = self::$process_category ? ' checked="checked" ' : ' ';
 		self::$process_tag = isset( $_REQUEST[ self::SLUG_PREFIX . self::INPUT_PROCESS_TAG ] ) ? true : false;
@@ -306,12 +318,27 @@ class Woo_Fixit {
 				'comment' => 'Fill empty ALT Text field with <strong>Product Title</strong>.' ),
 			'Replace ALT Text (T)' => array( 'handler' => '_replace_alt_text_t',
 				'comment' => '<strong>Replace ALL</strong> ALT Text field with <strong>Product Title</strong>.' ),
+			'c4a' => array( 'handler' => '', 'comment' => '<hr>' ),
 			'Fill Title (T)' => array( 'handler' => '_fill_title_t',
 				'comment' => 'Fill empty item Title field with <strong>Product Title</strong>.' ),
 			'Replace Title (T)' => array( 'handler' => '_replace_title_t',
 				'comment' => '<strong>Replace ALL</strong> item Title field with <strong>Product Title</strong>.' ),
 
-			'c5' => array( 'handler' => '', 'comment' => '<h3>Operations on the Featured Image and Product Gallery</h3>' ),
+			'c4b' => array( 'handler' => '', 'comment' => '<h3>Apply Template to Product Image/Product Gallery Images</h3>' ),
+			't0101' => array( 'open' => '<table><tr>' ),
+			't0110' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle">Template</td>' ),
+			't0111' => array( 'continue' => '  <td style="text-align: left; padding-right: 20px">' ),
+			't0112' => array( 'continue' => '    <input name="' . self::SLUG_PREFIX . self::INPUT_CONTENT_TEMPLATE . '" type="text" size="40" value="' . self::$content_template . '">' ),
+			't0113' => array( 'continue' => '  </td>' ),
+			't0122' => array( 'continue' => '</tr><tr>' ),
+			't0123' => array( 'continue' => '<td>&nbsp;</td><td colspan="1">Enter a Content Template (without the "template:" prefix).</td>' ),
+			't0124' => array( 'close' => '</tr></table>&nbsp;<br>' ),
+			'Fill ALT Text (CT)' => array( 'handler' => '_fill_alt_text_ct',
+				'comment' => 'Apply non-empty Content Template values to empty ALT Text fields.' ),
+			'Replace ALT Text (CT)' => array( 'handler' => '_replace_alt_text_ct',
+				'comment' => 'Apply non-empty Content Template values to <strong>ALL</strong> ALT Text fields.' ),
+
+			'c5' => array( 'handler' => '', 'comment' => '<h3>Operations on the Product Image and Product Gallery</h3>' ),
 			'Remove Feature' => array( 'handler' => '_remove_feature',
 				'comment' => 'Remove Product/Featured Image from the Product Gallery.' ),
 			'Restore Feature' => array( 'handler' => '_restore_feature',
@@ -351,30 +378,30 @@ class Woo_Fixit {
 			'Replace Att. Cats' => array( 'handler' => '_replace_attachment_categories',
 				'comment' => '<strong>Replace ALL</strong> Att. Categories assignments from Att. Tags, where the Att. Tag matches an existing Att. Category.' ),
 			'c9' => array( 'handler' => '', 'comment' => '<h3>Term Assignments for Media Library Items</h3>' ),
-			't0101' => array( 'open' => '<table><tr>' ),
-			't0102' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle"><input name="' . self::SLUG_PREFIX . self::INPUT_PROCESS_CATEGORY . '" type="checkbox"' . $category_attr . 'value="' . self::INPUT_PROCESS_CATEGORY . '"></td>' ),
-			't0103' => array( 'continue' => '  <td style="text-align: left; padding-right: 5px" valign="middle">product_category</td>' ),
-			't0104' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle"><input name="' . self::SLUG_PREFIX . self::INPUT_PROCESS_TAG . '" type="checkbox"' . $tag_attr . 'value="' . self::INPUT_PROCESS_TAG . '"></td>' ),
-			't0105' => array( 'continue' => '  <td style="text-align: left; padding-right: 5px" valign="middle">product_tag</td>' ),
-			't0106' => array( 'continue' => '  <td colspan=2 style="text-align: right; padding-right: 5px" valign="middle">&nbsp;</td>' ),
-			't0107' => array( 'continue' => '</tr><tr>' ),
-			't0108' => array( 'continue' => '<td>&nbsp;</td><td colspan="5">Check a box above to include the taxonomy in the processing.</td>' ),
-			't0109' => array( 'continue' => '</tr><tr style="display: none">' ),
-			't0110' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle">Start Chunk</td>' ),
-			't0111' => array( 'continue' => '  <td style="text-align: left; padding-right: 20px">' ),
-			't0112' => array( 'continue' => '    <input name="' . self::SLUG_PREFIX . self::INPUT_FIRST_CHUNK . '" type="text" size="5" value="' . self::$start_chunk . '">' ),
-			't0113' => array( 'continue' => '  </td>' ),
-			't0114' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle">Stop Chunk</td>' ),
-			't0115' => array( 'continue' => '  <td style="text-align: left;">' ),
-			't0116' => array( 'continue' => '    <input name="' . self::SLUG_PREFIX . self::INPUT_LAST_CHUNK . '" type="text" size="5" value="' . self::$stop_chunk . '">' ),
-			't0117' => array( 'continue' => '  </td>' ),
-			't0118' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle">Chunk Size</td>' ),
-			't0119' => array( 'continue' => '  <td style="text-align: left;">' ),
-			't0120' => array( 'continue' => '    <input name="' . self::SLUG_PREFIX . self::INPUT_CHUNK_SIZE . '" type="text" size="5" value="' . self::$chunk_size . '">' ),
-			't0121' => array( 'continue' => '  </td>' ),
-			't0122' => array( 'continue' => '</tr><tr style="display: none">' ),
-			't0123' => array( 'continue' => '<td>&nbsp;</td><td colspan="5">Enter start and stop chunks to restrict processing range;<br>chunk size is number of proucts/chunk.</td>' ),
-			't0124' => array( 'close' => '</tr></table>&nbsp;<br>' ),
+			't0201' => array( 'open' => '<table><tr>' ),
+			't0202' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle"><input name="' . self::SLUG_PREFIX . self::INPUT_PROCESS_CATEGORY . '" type="checkbox"' . $category_attr . 'value="' . self::INPUT_PROCESS_CATEGORY . '"></td>' ),
+			't0203' => array( 'continue' => '  <td style="text-align: left; padding-right: 5px" valign="middle">product_category</td>' ),
+			't0204' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle"><input name="' . self::SLUG_PREFIX . self::INPUT_PROCESS_TAG . '" type="checkbox"' . $tag_attr . 'value="' . self::INPUT_PROCESS_TAG . '"></td>' ),
+			't0205' => array( 'continue' => '  <td style="text-align: left; padding-right: 5px" valign="middle">product_tag</td>' ),
+			't0206' => array( 'continue' => '  <td colspan=2 style="text-align: right; padding-right: 5px" valign="middle">&nbsp;</td>' ),
+			't0207' => array( 'continue' => '</tr><tr>' ),
+			't0208' => array( 'continue' => '<td>&nbsp;</td><td colspan="5">Check a box above to include the taxonomy in the processing.</td>' ),
+			't0209' => array( 'continue' => '</tr><tr style="display: none">' ),
+			't0210' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle">Start Chunk</td>' ),
+			't0211' => array( 'continue' => '  <td style="text-align: left; padding-right: 20px">' ),
+			't0212' => array( 'continue' => '    <input name="' . self::SLUG_PREFIX . self::INPUT_FIRST_CHUNK . '" type="text" size="5" value="' . self::$start_chunk . '">' ),
+			't0213' => array( 'continue' => '  </td>' ),
+			't0214' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle">Stop Chunk</td>' ),
+			't0215' => array( 'continue' => '  <td style="text-align: left;">' ),
+			't0216' => array( 'continue' => '    <input name="' . self::SLUG_PREFIX . self::INPUT_LAST_CHUNK . '" type="text" size="5" value="' . self::$stop_chunk . '">' ),
+			't0217' => array( 'continue' => '  </td>' ),
+			't0218' => array( 'continue' => '  <td style="text-align: right; padding-right: 5px" valign="middle">Chunk Size</td>' ),
+			't0219' => array( 'continue' => '  <td style="text-align: left;">' ),
+			't0220' => array( 'continue' => '    <input name="' . self::SLUG_PREFIX . self::INPUT_CHUNK_SIZE . '" type="text" size="5" value="' . self::$chunk_size . '">' ),
+			't0221' => array( 'continue' => '  </td>' ),
+			't0222' => array( 'continue' => '</tr><tr style="display: none">' ),
+			't0223' => array( 'continue' => '<td>&nbsp;</td><td colspan="5">Enter start and stop chunks to restrict processing range;<br>chunk size is number of proucts/chunk.</td>' ),
+			't0224' => array( 'close' => '</tr></table>&nbsp;<br>' ),
 			'Clear Terms' => array( 'handler' => '_clear_term_assignments',
 				'comment' => '<strong>Delete ALL</strong> product_category and/or product_tag term assignments to Media Library items.' ),
 			'Assign Terms' => array( 'handler' => '_copy_term_assignments',
@@ -1098,6 +1125,152 @@ VALUES ( {$attachment},'_wp_attachment_image_alt','{$text}' )";
 		
 		return "_replace_title_t() performed {$update_count} update(s).\n";
 	} // _replace_title_t
+
+	/**
+	 * Process the "Apply a Content Template to ALT Text fields" actions
+ 	 *
+	 * @since 1.28
+	 *
+	 * @param boolean $retain_existing Retain existing ALT Text values
+	 *
+	 * @return array ( 'error' => $error_message, 'delete_count' => $delete_count,
+	 *                 'insert_count' => $insert_count )
+	 */
+	private static function _process_alt_text_ct( $retain_existing ) {
+		global $wpdb;
+
+		$results = array( 'error' => '', 'delete_count' => 0, 'insert_count' => 0 );
+		
+		$content_template = self::$content_template;
+		if ( 'template:' == substr( $content_template, 0, 9 ) ) {
+			$content_template = substr( $content_template, 9 );
+		}
+
+		if ( empty( $content_template ) ) {
+			$results['error'] =  "Content Template is empty; no updates done.\n";
+			return $results;
+		}
+
+		// Define the template
+		$my_setting = array(
+			'data_source' => 'template',
+			'meta_name' => '(' . $content_template . ')',
+			'option' => 'raw'
+		);
+
+		self::_build_product_attachments();
+		$delete_count = 0;
+		$insert_count = 0;
+		foreach ( array_chunk( self::$product_attachments, 25, true ) as $chunk ) {
+			$all_values = array();
+			$delete_values = array();
+			$replace_values = array();
+
+			// Evaluate the template for each attachment
+			foreach ( $chunk as $key => $value ) {
+				if ( ! empty( $value['_thumbnail_id'] ) ) {
+					$all_values[] = $id = $value['_thumbnail_id'];
+					
+					// Evaluate the template for the Product Image
+					$template_value = trim( MLAOptions::mla_get_data_source( $id, 'single_attachment_mapping', $my_setting, NULL ) );
+					if ( !empty( $template_value ) ) {
+						$replace_values[ $id ] = $template_value;
+					}
+				}
+				
+				if ( ! empty( $value['_product_image_gallery'] ) ) {
+					$ids = explode( ',', $value['_product_image_gallery'] );
+					foreach( $ids as $id ) {
+						$all_values[] = $id;
+						
+						// Evaluate the template for a Product Gallery Image
+						$template_value = trim( MLAOptions::mla_get_data_source( $id, 'single_attachment_mapping', $my_setting, NULL ) );
+						if ( !empty( $template_value ) ) {
+							$replace_values[ $id ] = $template_value;
+						} 
+					} // each Product Gallery image
+				} // has gallery
+			} // each Product
+
+			if ( $retain_existing ) {
+				// Find the existing ALT Text values and remove them from the update
+				$keys = implode( ',', array_keys( $replace_values ) );
+				$select_query = "SELECT post_id, meta_value FROM {$wpdb->postmeta} WHERE ( post_id IN ( {$keys} ) ) AND ( meta_key = '_wp_attachment_image_alt' )";
+				$delete_values = array();
+				foreach( $wpdb->get_results( $select_query ) as $existing_value ) {
+					$trim =  trim( $existing_value->meta_value );
+					if ( empty( $trim ) ) {
+						$delete_values[] = $existing_value->post_id;
+						continue;
+					}
+					unset( $replace_values[ (integer) $existing_value->post_id ] );
+				}
+			} else {
+				// Delete all of the existing values
+				$delete_values = $all_values;
+			}
+			
+			/*
+			 * Delete ALT Text values that are empty or will be replaced
+			 */
+			if ( ! empty( $delete_values ) ) {
+				$keys = implode( ',', $delete_values );
+				$delete_query = "DELETE FROM {$wpdb->postmeta} WHERE ( post_id IN ( {$keys} ) ) AND ( meta_key = '_wp_attachment_image_alt' )";
+				$query_result = $wpdb->query( $delete_query );
+				$delete_count += $query_result;
+			}
+			
+			/*
+			 * Insert the new values
+			 */
+			foreach ( $replace_values as $attachment => $text ) {
+				$insert_query = "INSERT INTO {$wpdb->postmeta} ( `post_id`,`meta_key`,`meta_value` )
+VALUES ( {$attachment},'_wp_attachment_image_alt','{$text}' )";
+				$query_result = $wpdb->query( $insert_query );
+				$insert_count += $query_result;
+			}
+		} // each chunk
+		
+		$results['delete_count'] =  $delete_count;
+		$results['insert_count'] =  $insert_count;
+		return $results;
+	} // _process_alt_text_ct
+
+	/**
+	 * Apply a Content Template to empty ALT Text fields
+ 	 *
+	 * @since 1.28
+	 *
+	 * @return	string	HTML markup for results/messages
+	 */
+	private static function _fill_alt_text_ct() {
+		$results = self::_process_alt_text_ct( true );
+		if ( empty( $results['error'] ) ) {
+			$delete_count = $results['delete_count'];
+			$insert_count = $results['insert_count'];
+			return "_fill_alt_text_ct() performed {$delete_count} delete(s), {$insert_count} inserts(s).\n";
+		}
+
+		return "_fill_alt_text_ct() " . $results['error'];
+	} // _fill_alt_text_ct
+
+	/**
+	 * Apply a Content Template to ALL ALT Text fields
+ 	 *
+	 * @since 1.28
+	 *
+	 * @return	string	HTML markup for results/messages
+	 */
+	private static function _replace_alt_text_ct() {
+		$results = self::_process_alt_text_ct( false );
+		if ( empty( $results['error'] ) ) {
+			$delete_count = $results['delete_count'];
+			$insert_count = $results['insert_count'];
+			return "_replace_alt_text_ct() performed {$delete_count} delete(s), {$insert_count} inserts(s).\n";
+		}
+
+		return "_replace_alt_text_ct() " . $results['error'];
+	} // _replace_alt_text_ct
 
 	/**
 	 * Remove Product/Featured Image from the Product Gallery

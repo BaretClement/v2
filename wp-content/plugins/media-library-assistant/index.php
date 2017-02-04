@@ -16,10 +16,10 @@ Description: Enhances the Media Library; powerful [mla_gallery], taxonomy suppor
 Author: David Lingren, Fair Trade Judaica
 Text Domain: media-library-assistant
 Domain Path: /languages
-Version: 2.40
+Version: 2.41
 Author URI: http://fairtradejudaica.org/our-story/staff/
 
-Copyright 2011-2016 David Lingren
+Copyright 2011-2017 David Lingren
 
 	This program is free software; you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by

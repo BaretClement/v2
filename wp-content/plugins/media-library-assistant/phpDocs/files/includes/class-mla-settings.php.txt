@@ -5,6 +5,7 @@
  * @package Media Library Assistant
  * @since 0.1
  */
+const MLA_USE_NEW_CUSTOM_FIELDS_TAB = false;
 
 /**
  * Class MLA (Media Library Assistant) Settings provides the settings page to edit the plugin option settings
@@ -95,7 +96,11 @@ class MLASettings {
 					require_once( MLA_PLUGIN_PATH . 'includes/class-mla-settings-view-tab.php' );
 					break;
 				case self::JAVASCRIPT_INLINE_MAPPING_CUSTOM_SLUG:
+if ( MLA_USE_NEW_CUSTOM_FIELDS_TAB ) {
 					require_once( MLA_PLUGIN_PATH . 'includes/class-mla-settings-custom-fields-tab.php' );
+} else {
+					require_once( MLA_PLUGIN_PATH . 'includes/class-mla-settings-custom-fields-tab.php' );
+}
 					break;
 				case self::JAVASCRIPT_INLINE_MAPPING_IPTC_EXIF_SLUG:
 					require_once( MLA_PLUGIN_PATH . 'includes/class-mla-settings-iptc-exif-tab.php' );
@@ -114,7 +119,11 @@ class MLASettings {
 					require_once( MLA_PLUGIN_PATH . 'includes/class-mla-settings-shortcodes-tab.php' );
 					break;
 				case 'custom_field':
+if ( MLA_USE_NEW_CUSTOM_FIELDS_TAB ) {
 					require_once( MLA_PLUGIN_PATH . 'includes/class-mla-settings-custom-fields-tab.php' );
+} else {
+					require_once( MLA_PLUGIN_PATH . 'includes/class-mla-settings-custom-fields-tab.php' );
+}
 					break;
 				case 'iptc_exif':
 					require_once( MLA_PLUGIN_PATH . 'includes/class-mla-settings-iptc-exif-tab.php' );
@@ -578,14 +587,17 @@ class MLASettings {
 	 * @param	string	Name of the option being changed
 	 * @param	string	New value of the option
 	 *
-	 * @return	string|void	New value if this is our option, otherwise nothing
+	 * @return	mixed	New value if this is our option, otherwise original status
 	 */
 	public static function mla_set_screen_option_filter( $status, $option, $value ) {
 		if ( in_array( $option, array ( 'mla_views_per_page', 'mla_uploads_per_page', 'mla_types_per_page', 'mla_shortcode_templates_per_page', 'mla_example_plugins_per_page' ) ) ) {
 			return $value;
-		} elseif ( $status ) {
-			return $status;
 		}
+
+		MLACore::mla_debug_add( __LINE__ . " MLASettings::mla_set_screen_option_filter( {$option} ) status = " . var_export( $status, true ), MLACore::MLA_DEBUG_CATEGORY_ANY );
+		MLACore::mla_debug_add( __LINE__ . " MLASettings::mla_set_screen_option_filter( {$option} ) value = " . var_export( $value, true ), MLACore::MLA_DEBUG_CATEGORY_ANY );
+
+		return $status;
 	}
 
 	/**

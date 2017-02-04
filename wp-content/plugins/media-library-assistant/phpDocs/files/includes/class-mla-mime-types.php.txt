@@ -483,8 +483,8 @@ class MLAMime {
 	 * to sort by. Often, the key and value will be the same, but this is not always
 	 * the case (as the value is a column name from the database, not the list table).
 	 *
-	 * The array value also contains a boolean which is 'true' if the data is currently
-	 * sorted by that column. This is computed each time the table is displayed.
+	 * The array value also contains a boolean which is 'true' if the initial sort order
+	 * for the column is DESC/Descending.
 	 *
 	 * @since 1.40
 	 *
@@ -571,8 +571,8 @@ class MLAMime {
 	 * to sort by. Often, the key and value will be the same, but this is not always
 	 * the case (as the value is a column name from the database, not the list table).
 	 *
-	 * The array value also contains a boolean which is 'true' if the data is currently
-	 * sorted by that column. This is computed each time the table is displayed.
+	 * The array value also contains a boolean which is 'true' if the initial sort order
+	 * for the column is DESC/Descending.
 	 *
 	 * @since 1.40
 	 *
@@ -646,8 +646,8 @@ class MLAMime {
 	 * to sort by. Often, the key and value will be the same, but this is not always
 	 * the case (as the value is a column name from the database, not the list table).
 	 *
-	 * The array value also contains a boolean which is 'true' if the data is currently
-	 * sorted by that column. This is computed each time the table is displayed.
+	 * The array value also contains a boolean which is 'true' if the initial sort order
+	 * for the column is DESC/Descending.
 	 *
 	 * @since 1.40
 	 *

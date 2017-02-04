@@ -539,14 +539,6 @@ class MLAShortcode_Support {
 
 		$current_rows = count( $attachments );
 
-		if ( isset( $attachments['found_rows'] ) ) {
-			$found_rows = $attachments['found_rows'];
-			unset( $attachments['found_rows'] );
-			$current_rows--;
-		} else {
-			$found_rows = $current_rows;
-		}
-		
 		if ( isset( $attachments['max_num_pages'] ) ) {
 			$max_num_pages = $attachments['max_num_pages'];
 			unset( $attachments['max_num_pages'] );
@@ -555,7 +547,15 @@ class MLAShortcode_Support {
 			$max_num_pages = 1;
 		}
 		
-		if ( empty($attachments) ) {
+		if ( isset( $attachments['found_rows'] ) ) {
+			$found_rows = $attachments['found_rows'];
+			unset( $attachments['found_rows'] );
+			$current_rows--;
+		} else {
+			$found_rows = $current_rows;
+		}
+		
+		if ( ( $is_gallery && empty($attachments) ) || ( $is_pagination && empty( $found_rows ) ) ) {
 			if ( self::$mla_debug ) {
 				MLACore::mla_debug_add( '<strong>' . __( 'mla_debug empty gallery', 'media-library-assistant' ) . '</strong>, query = ' . var_export( $attr, true ) );
 				$output = MLACore::mla_debug_flush();
@@ -5002,7 +5002,7 @@ class MLAShortcode_Support {
 				if ( empty( MLAQuery::$search_parameters['mla_term_connector'] ) ) {
 					MLAQuery::$search_parameters['mla_terms_search']['radio_terms'] = 'OR';
 				} else {
-					MLAQuery::$search_parameters['mla_terms_search']['radio_terms'] = MLAQuery::$search_parameters['mla_phrase_connector'];
+					MLAQuery::$search_parameters['mla_terms_search']['radio_terms'] = MLAQuery::$search_parameters['mla_term_connector'];
 				}
 			}
 

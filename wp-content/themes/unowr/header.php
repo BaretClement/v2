@@ -19,7 +19,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/style.css">
 		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/semantic.css">
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-		<link href="https://fonts.googleapis.com/css?family=Lato:200,300,400" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Roboto:100,300,400,500,700,900" rel="stylesheet">
 
 		<?php wp_head(); ?>
 	</head>

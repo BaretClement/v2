@@ -3006,6 +3006,7 @@ class MLAData {
 				$pdf_metadata = MLAPDF::mla_extract_pdf_metadata( $path );
 				$results['mla_xmp_metadata'] = $pdf_metadata['xmp'];
 				$results['mla_pdf_metadata'] = $pdf_metadata['pdf'];
+				MLACore::mla_debug_add( __LINE__ . ' mla_fetch_attachment_image_metadata results = ' . var_export( $results, true ), MLACore::MLA_DEBUG_CATEGORY_METADATA );
 				return $results;
 			}
 
@@ -3014,7 +3015,8 @@ class MLAData {
 			if ( is_callable( 'iptcparse' ) ) {
 				if ( ! empty( $info['APP13'] ) ) {
 					//set_error_handler( 'MLAData::mla_IPTC_EXIF_error_handler' );
-					$iptc_values = iptcparse( $info['APP13'] );
+					$iptc_values = @iptcparse( $info['APP13'] );
+					MLACore::mla_debug_add( __LINE__ . ' mla_fetch_attachment_image_metadata iptc_values = ' . var_export( $iptc_values, true ), MLACore::MLA_DEBUG_CATEGORY_METADATA );
 					//restore_error_handler();
 
 					if ( ! empty( MLAData::$mla_IPTC_EXIF_errors ) ) {
@@ -3041,13 +3043,61 @@ class MLAData {
 			} // iptcparse
 
 			if ( is_callable( 'exif_read_data' ) && in_array( $size[2], array( IMAGETYPE_JPEG, IMAGETYPE_TIFF_II, IMAGETYPE_TIFF_MM ) ) ) {
+				// When reading EXIF information from the 'WINXP' group, you may need to change used encoding from the default "ISO-8859-15" to "UTF-8". This can be done in php.ini or in your code.
+				//ini_set( 'exif.encode_unicode', 'UTF-8' );
 				//set_error_handler( 'MLAData::mla_IPTC_EXIF_error_handler' );
-				$results['mla_exif_metadata'] = $exif_data = @exif_read_data( $path );
+				$exif_data = @exif_read_data( $path, NULL, true );
+				//ini_restore( 'exif.encode_unicode' );
+				//MLACore::mla_debug_add( __LINE__ . ' mla_fetch_attachment_image_metadata exif_data = ' . var_export( $exif_data, true ), MLACore::MLA_DEBUG_CATEGORY_METADATA );
 				//restore_error_handler();
 				if ( ! empty( MLAData::$mla_IPTC_EXIF_errors ) ) {
 					$results['mla_exif_errors'] = MLAData::$mla_IPTC_EXIF_errors;
 					MLAData::$mla_IPTC_EXIF_errors = array();
 					MLACore::mla_debug_add( __LINE__ . __( 'ERROR', 'media-library-assistant' ) . ': ' . '$results[mla_exif_errors] = ' . var_export( $results['mla_exif_errors'], true ), MLACore::MLA_DEBUG_CATEGORY_ANY );
+				}
+				
+				if ( ! is_array( $exif_data ) ) {
+					$exif_data = array();
+				}
+
+				// Promote most array elements to top-level simple values, emulating $arrays = false
+				foreach ( $exif_data as $section_name => $section_data ) {
+					/*
+				 	 * The sections COMPUTED, THUMBNAIL, and COMMENT always become arrays as
+				 	 * they may contain values whose names conflict with other sections.
+					 * The WINXP section usually contains garbage that overwrites IFD0 values.
+				 	 */
+					if ( in_array( $section_name, array ( 'COMPUTED', 'THUMBNAIL', 'COMMENT', 'WINXP' ) ) ) {
+						$results['mla_exif_metadata'][ $section_name ] = $section_data;
+						continue;
+					}
+
+					foreach ( $section_data as $element_name => $element_value ) {
+						// JPEG standard defines 0xEA1C as "padding"
+						if ( 'UndefinedTag:0xEA1C' === $element_name ) {
+							continue;
+						}
+
+						// Decode some non-string values
+						if ( 'IFD0' === $section_name ) {
+							/*
+							 * PixelUnit (1 byte) Units for the PixelPerUnitX and PixelPerUnitY densities
+							 * 0: no units, PixelPerUnitX and PixelPerUnitY specify the pixel aspect ratio
+							 * 1: PixelPerUnitX and PixelPerUnitY are dots per inch
+							 * 2: PixelPerUnitX and PixelPerUnitY are dots per cm
+							 */
+							if ( 'PixelUnit' === $element_name ) {
+								$element_value = (string) ord( $element_value );
+							}
+							
+							// Problem with values edited through Windows right-click properties. 
+							if ( in_array( $element_name, array( 'Title', 'Keywords', 'Subject' ) ) ) {
+								$element_value = str_replace( "\000", '', $element_value );
+							}
+						}
+
+						$results['mla_exif_metadata'][ $element_name ] = $element_value;
+					}
 				}
 			} // exif_read_data
 
@@ -3066,7 +3116,7 @@ class MLAData {
 					$results['mla_exif_metadata']['DateTimeOriginal'] = $results['mla_xmp_metadata']['CreateDate'];
 				}
 			}
-				
+
 			// experimental damage repair for Elsie Gilmore (earthnutvt)
 			if ( isset( $exif_data['Keywords'] ) && ( '????' == substr( $exif_data['Keywords'], 0, 4 ) ) ) {
 				if ( isset( $results['mla_xmp_metadata']['Keywords'] ) ) {
@@ -3334,7 +3384,7 @@ class MLAData {
 			$results['mla_exif_metadata']['GPS'] = $new_data;
 		}
 
-//error_log( __LINE__ . " mla_fetch_attachment_image_metadata( {$post_id} ) results = " . var_export( $results, true ), 0 );
+		MLACore::mla_debug_add( __LINE__ . ' mla_fetch_attachment_image_metadata results = ' . var_export( $results, true ), MLACore::MLA_DEBUG_CATEGORY_METADATA );
 		return $results;
 	}
 
@@ -3456,6 +3506,25 @@ class MLAData {
 			if ( $no_null = isset( $meta_value[0x80000002] ) ) {
 				$no_null = (boolean) $meta_value[0x80000002];
 				unset( $meta_value[0x80000002] );
+			}
+
+			// mla_fetch_attachment_metadata doesn't return "hidden" fields
+			if ( '_' === $meta_key{0} ) {
+				$old_meta_value = get_post_meta( $post_id, $meta_key );
+
+				if ( !empty( $old_meta_value ) ) {
+					if ( is_array( $old_meta_value ) ) {
+						if ( count( $old_meta_value ) == 1 ) {
+							$old_meta_value = maybe_unserialize( current( $old_meta_value ) );
+						} else {
+							foreach ( $old_meta_value as $single_key => $single_value ) {
+								$old_meta_value[ $single_key ] = maybe_unserialize( $single_value );
+							}
+						}
+					}
+
+					$post_data[ 'mla_item_' . $meta_key ] = $old_meta_value;
+				}
 			}
 
 			if ( isset( $post_data[ 'mla_item_' . $meta_key ] ) ) {

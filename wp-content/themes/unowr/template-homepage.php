@@ -4,25 +4,27 @@ Template Name: Homepage
 */
 
 get_header( '' ); ?>
-
-			<!-- USER PART -->
-			<div id="user-part" class="ui middle aligned first-part height grid container">
-				<div id="user-part" class="ui middle aligned grid container">
-					<div class="sixteen middle aligned wide column">
-						<img src="<?php echo get_template_directory_uri(); ?>/css/img/avatar/intro-large-screen.png" class="ui fluide image large-screen">
-						<img src="<?php echo get_template_directory_uri(); ?>/css/img/avatar/intro-mobile.png" class="ui fluide image mobile">
-						<!-- <h1>Trouvez le restaurant dont vous avez réellement envie, maintenant.</h1> -->
-						<br><a href="<?php echo get_template_directory_uri(); ?>/rechercher-un-restaurant"><button class="ui red button"><i class="search icon"></i> Chercher un restaurant</button></a>
-						<br><br>
-						<a href="#restaurant-part" class="smooth-scroll"><button class="inverted circular ui basic icon button"><i class="arrow down icon"></i></button></a>
-					</div>
-				</div>
+</div>
+		<!-- USER PART -->
+		<div id="user-part" class="ui first-part height center aligned grid container" style="padding-bottom:0!important">
+			<div id="intro-content" class="sixteen wide bottom aligned column">
+				<h1 class="title">Trouvez le restaurant parfait.</h1>
+				<p class="subtitle">En fonction de tes réponses nous pourrons te proposer les restaurants qui correspondent le mieux à tes attentes.</p>
+				<img src="<?php echo get_template_directory_uri(); ?>/css/img/avatar/4.neutral-thanks.svg">
 			</div>
-			<!-- USER PART -->
 		</div>
+		<div class="ui center aligned grid" style="padding: 50px !important">
+			<div class="column">
+			<a href="<?php echo get_template_directory_uri(); ?>/rechercher-un-restaurant"><button class="ui red button"><i class="search icon"></i> Chercher un restaurant</button></a>
+			<br>
+			<br>
+			<a href="#restaurant-part" class="smooth-scroll"><button class="circular ui basic icon button"><i class="arrow down icon"></i></button></a>
+			</div>
+		</div>
+		<!-- USER PART -->
 
 		<!-- RESTAURANT PART -->
-		<div id="restaurant-part" class="ui center aligned full height grid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/css/img/background-restaurateur-part.png);">
+		<div id="restaurant-part" class="ui center aligned full height grid" style="background-image: url(<?php echo get_template_directory_uri(); ?>/css/img/background-restaurateur-part.png); background-size: cover">
 			<div class="row">
 				<div class="sixteen middle aligned wide column">
 					<img src="<?php echo get_template_directory_uri(); ?>/css/img/restaurant.svg" class="ui small margin auto image">

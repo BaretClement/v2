@@ -1,10 +1,10 @@
 <?php
 /**
- * Adds "Regenerate Thumbnails" actions to rollover actions and Bulk Edit dropdown
+ * Adds "Regenerate Thumbnails" actions to rollover actions and Bulk Actions dropdown
  *
  * In this example, the "Regenerate Thumbnails" plugin is detected and if found,
  * "Regenerate Thumbnails" actions are added to the Media/Assistant item rollover
- * actions and the Bulk Edit dropdown controls.
+ * actions and the Bulk Actions dropdown controls.
  *
  * This example plugin uses two of the many filters available in the Media/Assistant submenu screen
  * and illustrates a technique you can use to customize the submenu table display.
@@ -42,9 +42,8 @@ Copyright 2016 David Lingren
 */
 
 /**
- * Class MLA Regenerate Thumbnails Example supplies random items from a collection of Att. Category terms
- *
- * NOTE: You must enter the name or slug values for your application's terms in the $gallery_terms array below.
+ * Class MLA Regenerate Thumbnails Example "Regenerate Thumbnails" actions to
+ * rollover actions and Bulk Actions dropdown.
  *
  * @package MLA Regenerate Thumbnails Example
  * @since 1.00
