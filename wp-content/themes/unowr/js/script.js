@@ -171,6 +171,7 @@ $(document).ready(function(){
         }
         var currentKey = questions[0].key
         changeForm(questions[0])
+        var lastResult = []
         var conversationalForm = new cf.ConversationalForm({
           formEl: document.getElementById("form"),
           robotImage: bot_img, //base64 || image url // overwrite robot image, without overwritting the robot dictionary
@@ -183,12 +184,29 @@ $(document).ready(function(){
                 '/wp-admin/admin-ajax.php', formResult,
                 function(response){
                   var json = JSON.parse(response);
-                  currentKey = json.question.key
-                  changeForm(json.question);
-                  console.log(JSON.parse(response));
-                  index++
 
-                  // submitform()
+                  if (json.result.length < 3) {
+                    var res = json.result
+                    while(res.length < 3) {
+                      var add = lastResult[0]
+                      var shouldAdd = true
+                      Array.prototype.forEach.call(res, function(item) {
+                        if(item.id == add.id) {
+                          shouldAdd = false
+                        }
+                      })
+                      if(shouldAdd) {
+                        res.push(lastResult[0])
+                      }
+                      lastResult.shift()
+                    }
+                    submitform(res)
+                  }else {
+                    currentKey = json.question.key
+                    changeForm(json.question);
+                    lastResult = json.result
+                    index++
+                  }
                 }
               );
             // }else {
@@ -197,13 +215,13 @@ $(document).ready(function(){
           }
         });
 
-        function submitform() {
+        function submitform(res) {
           var url = top.location.pathname
           var $form = $('<form>')
           $form.css('display', 'none')
           $form.attr('method', 'post');
           $form.attr('action', url);
-          var data = JSON.stringify(formResult);
+          var data = JSON.stringify(res);
           $form.append($('<input type="hidden" name="json"/>').val(data));
           $('body').append($form);
           $form.submit();
