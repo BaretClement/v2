@@ -8,10 +8,10 @@ get_header(); ?>
 </div>
 
 <?php 
-	$json = json_decode($_POST["json"]);
+	$json = json_decode(stripslashes(html_entity_decode($_POST["json"])));
 
 	echo"<pre>";
-		var_dump($json);
+		var_dump($json, "\0");
 	echo"</pre>";
 ?>
 
