@@ -692,12 +692,12 @@ function ajax_filter() {
 				);
 			}
 			else if($current['type'] == 'select'){
-
-				$question = get_terms(array(
+				$q = array(
 				  'taxonomy' => $current['name'],
 				  'hide_empty' => false,
-				));
-
+				);
+				if(isset($current['parent'])) $q['parent'] = $current['parent'];
+				$question = get_terms($q);
 			}
 
 			foreach ($question as $k => $v) {
