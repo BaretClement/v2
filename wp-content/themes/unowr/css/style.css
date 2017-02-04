@@ -4,6 +4,7 @@
 
 body {
     font-family: 'Lato', sans-serif;
+    font-size: 16px;
     font-weight: 300 !important;
     color: #1B1C1D !important;
     line-height: 1.5em !important;
@@ -17,15 +18,28 @@ footer {
   color: #FFFFFF;
 }
 h1, h2, h3, h4, h5 {
-    font-family: 'Lato', sans-serif;
-    font-weight: bold !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 900 !important;
+    text-transform: uppercase;
 }
 h1.title{
   font-size: 4rem !important;
+  margin-bottom: 15px;
 }
 h2.introduction{
   font-weight: 300 !important;
   font-size: 21px !important;
+}
+p{
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-weight: 500 !important;
+}
+p.subtitle{
+  margin-bottom: 50px !important;
+}
+p.footer{
+  font-size: 1rem !important;
 }
 /************************************************/
 /************* ADDITIONAL SETTINGS **************/
@@ -156,6 +170,7 @@ div.item.menu:hover {
   background-position: top right;
 }
 #how-to-part{
+  padding-top: 93.33px !important;
   padding-bottom: 0 !important;
 }
 #mock-up {
@@ -329,6 +344,7 @@ cf-chat-response.user text thinking {
     h1.title{font-size: 1.8rem !important;}
     h2 {font-size: 1.5rem !important;}
     h3 {font-size: 1.3rem !important;}
+    p.subtitle{margin-bottom: 15px !important;}
     cf-chat-response {max-width: 90% !important;}
     {padding: 50px 0 !important;}
     #article {padding: 50px 1rem 1rem 1rem !important;}

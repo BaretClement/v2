@@ -12,7 +12,7 @@
 	
 	<!-- FOOTER -->
 	<footer>
-		<p>WE <i class="red heart icon"></i>YOU
+		<p class="footer">WE <i class="red heart icon"></i>YOU
 		<br>Version 2.0.0</p>
 	</footer>
 

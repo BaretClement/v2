@@ -47,15 +47,6 @@ get_header(); ?>
 			<form id="feedback" method="post" action="<?php site_url() ?>" cf-form-element>
 			    <!-- Question prénom -->
 			    <input name="prenom" type="text" cf-questions="Salut comment t'appelles-tu ?| Hello ! Quel est ton prénom ?">
-			    
-
-				<!-- test select + date picker -->
-                      <select cf-questions="Do you think conversational forms will replace web forms in the future?" name="opinion" id="opinion" class="form-control">
-                        <option></option>
-                        <div class="ui calendar" id="example1"><div class="ui button">Select date</div></div>
-                        <option>Euh....</option>
-                      </select>
-
 
 			    <!-- Question message -->
 			    <input value="okay" name="message" type="text" cf-questions="Ok {previous-answer}, de quoi souhaites-tu nous faire part ?| Hello {previous-answer} ! Quelles sont tes remarques ? :)">
