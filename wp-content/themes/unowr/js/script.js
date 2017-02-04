@@ -99,39 +99,6 @@ $(document).ready(function(){
       type: "input",
       key: "name",
       label: "hello from input"
-    },
-    {
-      type: "date",
-      key: "date",
-      label: "hello from date"
-    },
-    {
-      type: "select",
-      label: "hello from select",
-      key: "select_1",
-      answers: [
-        "answer 1 from option",
-        "answer 2 from option",
-        "answer 3 from option"
-      ]
-    },
-    {
-      type: "select",
-      label: "more select",
-      key: "select_2",
-      answers: [
-        "answer 1 from option",
-        "answer 2 from option",
-        "answer 3 from option",
-        "answer 4 from option",
-        "answer 5 from option",
-        "answer 6 from option"
-      ]
-    },
-    {
-      type: "input",
-      key: "select_3",
-      label: "again input"
     }
   ];
 
@@ -197,36 +164,36 @@ $(document).ready(function(){
           if (window.ConversationalForm != null) {
             window.ConversationalForm.remapTagsAndStartFrom()
           }
-          index++
         }
 
         var formResult = {
           'action': 'ajax_filter'
         }
-        var currentKey = ''
+        var currentKey = questions[0].key
         changeForm(questions[0])
         var conversationalForm = new cf.ConversationalForm({
           formEl: document.getElementById("form"),
           robotImage: bot_img, //base64 || image url // overwrite robot image, without overwritting the robot dictionary
           userImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
           submitCallback: function() {
-            if (questions[index] != null) {
-              currentKey = questions[index].key
+            // if (questions[index] != null) {
               formResult[currentKey] = $('cf-chat-response').last().find('text').html()
               formResult['question-index'] = index;
-              console.log('* * * * * * * * * * * * * * * * * * * * * * * * * * * * *')
-              console.log('formResult', formResult)
               jQuery.post(
                 '/wp-admin/admin-ajax.php', formResult,
                 function(response){
                   var json = JSON.parse(response);
-                  changeForm(json);
+                  currentKey = json.question.key
+                  changeForm(json.question);
                   console.log(JSON.parse(response));
+                  index++
+
+                  // submitform()
                 }
               );
-            }else {
-              submitform()
-            }
+            // }else {
+              
+            // }
           }
         });
 
