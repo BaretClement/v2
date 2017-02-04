@@ -40,6 +40,10 @@ get_header(); ?>
 
 <script>
 	var bot_img = "<?php echo get_template_directory_uri(); ?>/css/img/avatar/2.normal.svg";
+	var ajax_url = "<?php echo admin_url( 'admin-ajax.php' ); ?>";
+	var site_url = "<?php echo site_url(); ?>";
 </script>
+
+ 
 
 <?php get_footer( '' ); ?>

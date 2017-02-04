@@ -181,7 +181,7 @@ $(document).ready(function(){
               formResult[currentKey] = $('cf-chat-response').last().find('text').html()
               formResult['question-index'] = index;
               jQuery.post(
-                '/wp-admin/admin-ajax.php', formResult,
+                ajax_url, formResult,
                 function(response){
                   var json = JSON.parse(response);
 
@@ -220,7 +220,7 @@ $(document).ready(function(){
           var $form = $('<form>')
           $form.css('display', 'none')
           $form.attr('method', 'post');
-          $form.attr('action', url);
+          $form.attr('action', site_url+"/resultats");
           var data = JSON.stringify(res);
           $form.append($('<input type="hidden" name="json"/>').val(data));
           $('body').append($form);

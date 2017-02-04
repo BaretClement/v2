@@ -4,7 +4,17 @@ Template Name: resultats
 */
 
 get_header(); ?>
+
 </div>
+
+<?php 
+	$json = json_decode($_POST["json"]);
+
+	echo"<pre>";
+		var_dump($json);
+	echo"</pre>";
+?>
+
 <style type="text/css">
 	p .text{
 		font-family: 'Lato', sans-serif;
@@ -48,19 +58,19 @@ get_header(); ?>
 		content: "01";
 	}
 	#first-result.first-content::after{
-		content: "12€";
+		content: "<?php  ?>€";
 	}
 	#second-result.first-content::before{
 		content: "02";
 	}
 	#second-result.first-content::after{
-		content: "20€";
+		content: "<?php  ?>€";
 	}
 	#third-result.first-content::before{
 		content: "03";
 	}
 	#third-result.first-content::after{
-		content: "40€";
+		content: "<?php  ?>€";
 	}
 	.category{
 		font-family: 'Lato', sans-serif;
@@ -113,13 +123,14 @@ get_header(); ?>
 
 </style>
 
+
 	<!-- 01 -->
 	<div class="ui two column stackable no padding grid">
 		<div class="first-part height row">
 			<div id="title" class="middle aligned left floated column">
 				<div id="first-result" class="first-content">
-					<div class="category">Type de cuisine <sub>/ Sous type de cuisine</sub></div>
-					<div class="title"><h2>Nom du restaurant</h2></div>
+					<div class="category"><?  ?><sub>/ Sous type de cuisine</sub></div>
+					<div class="title"><h2><?php echo $title_1; ?></h2></div>
 					<div class="text"><p>Simple & rapide, tu n'as qu'à répondre à une liste de questions pour trouver le restaurant idéal.<br> En plus, tu peux réserver gratuitement !</p></div>
 					<div id="button" class="ui red button">Réserver gratuitement</div>
 				</div>
@@ -136,7 +147,7 @@ get_header(); ?>
 			<div id="title" class="middle aligned left floated column">
 				<div id="second-result" class="first-content">
 					<div class="category">Type de cuisine <sub>/ Sous type de cuisine</sub></div>
-					<div class="title"><h2>Nom du restaurant</h2></div>
+					<div class="title"><h2><?php echo $title_2; ?></h2></div>
 					<div class="text"><p>Simple & rapide, tu n'as qu'à répondre à une liste de questions pour trouver le restaurant idéal.<br> En plus, tu peux réserver gratuitement !</p></div>
 					<div id="button" class="ui red button">Réserver gratuitement</div>
 				</div>
@@ -153,7 +164,7 @@ get_header(); ?>
 			<div id="title" class="middle aligned left floated column">
 				<div id="third-result" class="first-content">
 					<div class="category">Type de cuisine <sub>/ Sous type de cuisine</sub></div>
-					<div class="title"><h2>Nom du restaurant</h2></div>
+					<div class="title"><h2><?php echo $title_3; ?></h2></div>
 					<div class="text"><p>Simple & rapide, tu n'as qu'à répondre à une liste de questions pour trouver le restaurant idéal.<br> En plus, tu peux réserver gratuitement !</p></div>
 					<div id="button" class="ui red button">Réserver gratuitement</div>
 				</div>
