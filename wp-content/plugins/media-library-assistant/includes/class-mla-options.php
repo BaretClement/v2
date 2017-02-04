@@ -1187,6 +1187,7 @@ class MLAOptions {
 	 */
 	public static function mla_custom_field_option_handler( $action, $key, $value, $args = NULL ) {
 		$current_values = MLACore::mla_get_option( 'custom_field_mapping' );
+//error_log( __LINE__ . " mla_custom_field_option_handler( $action, $key ) current_values = " . var_export( $current_values, true ), 0 );
 
 		switch ( $action ) {
 			case 'render':
@@ -2451,7 +2452,7 @@ class MLAOptions {
 	 */
 	public static function mla_iptc_exif_option_handler( $action, $key, $value, $args = NULL ) {
 		$current_values = MLACore::mla_get_option( 'iptc_exif_mapping' );
-
+//error_log( __LINE__ . " mla_iptc_exif_option_handler( $action, $key ) current_values = " . var_export( $current_values, true ), 0 );
 		switch ( $action ) {
 			case 'render':
 

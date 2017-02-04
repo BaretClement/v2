@@ -69,7 +69,12 @@ class MLA_Polylang_Shortcodes {
 	public static function mla_get_terms_clauses( $clauses ) {
 		global $polylang;
 
-		$clauses = $polylang->filters->terms_clauses($clauses, MLA_Polylang_Shortcodes::$all_query_parameters['taxonomy'], MLA_Polylang_Shortcodes::$all_query_parameters );
+		// The Polylang terms_clauses method is in one of two places
+		if ( is_admin() ) {
+			$clauses = $polylang->filters_term->terms_clauses($clauses, MLA_Polylang_Shortcodes::$all_query_parameters['taxonomy'], MLA_Polylang_Shortcodes::$all_query_parameters );
+		} else {
+			$clauses = $polylang->filters->terms_clauses($clauses, MLA_Polylang_Shortcodes::$all_query_parameters['taxonomy'], MLA_Polylang_Shortcodes::$all_query_parameters );
+		}
 
 		return $clauses;
 	} // mla_get_terms_clauses

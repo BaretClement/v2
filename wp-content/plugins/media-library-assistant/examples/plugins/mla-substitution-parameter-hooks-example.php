@@ -5,7 +5,7 @@
  * In this example:
  *     - a "parent_terms:" prefix accesses taxonomy terms assigned to an item's parent post/page
  *     - a "page_terms:" prefix accesses taxonomy terms assigned to the current post/page
- *     - a "parent:" prefix accesses all of the WP_Post properties and the permalink for an item's parent
+ *     - a "parent:" prefix accesses all of the WP_Post properties, custom fields and the permalink for an item's parent
  *     - an "author:" prefix accesses all of the WP_User properties for an item's author
  *     - an "conditional:" prefix returns a value when a condition is true, e.g., during the upload process
  *
@@ -29,8 +29,12 @@
  * opened on 9/21/2016 by "cconstantine":
  * https://wordpress.org/support/topic/what-are-the-default-values-for-the-markup-template/
  *
+ * Enhanced for support topic "Maping Image ALT Tags to Product Meta Title"
+ * opened on 12/6/2016 by "webpresencech":
+ * https://wordpress.org/support/topic/maping-image-alt-tags-to-product-meta-title/
+ *
  * @package MLA Substitution Parameter Hooks Example
- * @version 1.05
+ * @version 1.06
  */
 
 /*
@@ -38,7 +42,7 @@ Plugin Name: MLA Substitution Parameter Hooks Example
 Plugin URI: http://fairtradejudaica.org/media-library-assistant-a-wordpress-plugin/
 Description: Adds "parent_terms:", "page_terms:", "parent:", "author:" and "conditional:" Field-level Substitution Parameters
 Author: David Lingren
-Version: 1.05
+Version: 1.06
 Author URI: http://fairtradejudaica.org/our-story/staff/
 
 Copyright 2016 David Lingren
@@ -331,6 +335,13 @@ class MLASubstitutionParameterExample {
 				$custom_value = $parent->$value['value'];
 			} elseif ( 'permalink' == $value['value'] ) {
 				$custom_value = get_permalink( $parent );
+			} else {
+				// Look for a custom field match
+				$meta_value = get_metadata( 'post', $parent_id, $value['value'], false );
+//error_log( __LINE__ . " MLASubstitutionParameterExample::mla_expand_custom_prefix( {$key}, {$post_id}, {$parent_id} ) meta_value = " . var_export( $meta_value, true ), 0 );
+				if ( !empty( $meta_value ) ) {
+					$custom_value = $meta_value;
+				}
 			}
 			
 //error_log( __LINE__ . " MLASubstitutionParameterExample::mla_expand_custom_prefix( {$key}, {$post_id}, {$parent_id} ) custom_value = " . var_export( $custom_value, true ), 0 );

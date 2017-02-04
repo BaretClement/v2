@@ -35,7 +35,7 @@ get_header(); ?>
 		<div class="column">
 
 		<?php
-		echo '<h2>';
+		echo '<h2 class="introduction">';
 			the_field('introduction');
 		echo '</h2>';
 

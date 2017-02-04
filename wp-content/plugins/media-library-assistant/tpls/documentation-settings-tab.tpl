@@ -68,6 +68,7 @@ For more information about the example plugins, jump to <a href="#mla_example_pl
 <li><a href="#term_list_data_selection">Term List Data Selection Parameters</a></li>
 <li><a href="#term_list_data_selection_h">Term List Data Selection Parameters (Hierarchical Output)</a></li>
 <li><a href="#term_list_substitution">Term List Substitution Parameters</a></li>
+<li><a href="#mla_term_list_examples">MLA Term List Examples</a></li>
 <li><a href="#mla_term_list_hooks">MLA Term List Filters (Hooks)</a></li>
 </ul></div>
 <ul style="list-style-position:inside; list-style:disc; line-height: 18px; clear:both">
@@ -2863,6 +2864,40 @@ Term list <strong>item-specific substitution parameters</strong> for the Markup 
 </table>
 <p>
 &nbsp;
+<a name="mla_term_list_examples"></a>
+</p>
+<h4>MLA Term List Examples</h4>
+<p>
+Here is a simple example of a dropdown control for the Att. Categories taxonomy:
+</p>
+<p>
+<code>
+&lt;form id="mla-text-form" action="." method="post" class="row"&gt;<br />
+&lt;strong&gt;Att. Categories&lt;/strong&gt;<br />
+[mla_term_list taxonomy=attachment_category mla_output=dropdown mla_option_value="{+slug+}" show_count=true pad_counts=false ]<br />
+&nbsp;<br />
+&lt;input id="text-form-submit" name="text_form_submit" type="submit" value="Search" /&gt;<br />
+&lt;/form&gt;<br />
+&nbsp;<br />
+&lt;h3&gt;Gallery&lt;/h3&gt;<br />
+[mla_gallery]<br />
+attachment_category="{+template:({+request:tax_input.attachment_category+}|no-term-selected)+}"<br />
+posts_per_page=3 mla_output="paginate_links,prev_next"<br />
+mla_link_href='{+new_url+}?mla_paginate_current={+new_page+}&tax_input[attachment_category]="{+query:attachment_category,text+}"'<br />
+[/mla_gallery]<br />
+&nbsp;<br />
+[mla_gallery attachment_category="{+template:({+request:tax_input.attachment_category+}|no-term-selected)+}" posts_per_page=3 mla_caption="{+title+} : {+description+}" mla_nolink_text="&lt;br&gt;Select a term to display the gallery.&lt;br&gt;"]
+</code>
+</p>
+<p>
+As you can see, the key is passing the selected term from the form to the gallery shortcodes. By default, the <code>[mla_term_list]</code> shortcode collects all of its results in the <code>tax_input</code> array, keyed by taxonomy slug. The example combines this with an invalid term slug so the gallery will be empty until a term is selected in the dropdown. Note that the pagination shortcode uses the &ldquo;enclosing shortcode&rdquo; format so HTML characters in the mla_link_href parameter are not corrupted by the WordPress shortcode parsing process.
+</p>
+<p>
+You can experiment with a category checklist format by simply changing <code>mla_output=dropdown</code> to <code>mla_output=checklist</code> in the <code>[mla_term_list]</code> shortcode.
+You will also see that the term you select doesn&rsquo;t &ldquo;stick&rdquo; in the dropdown control when the page is refreshed with the gallery display. That is one motivation or the &ldquo;MLA UI Elements Example&rdquo; plugin. You can use that example plugin to improve the user experience after you have got the basic application going.
+</p>
+<p>
+&nbsp;
 <a name="mla_term_list_hooks"></a>
 </p>
 <h4>MLA Term List Filters (Hooks)</h4>
@@ -3357,7 +3392,7 @@ The <code>[mla_gallery]</code> shortcode can be used in combination with other g
 <table>
 <tr>
 <td class="mla-doc-table-label">mla_alt_shortcode</td>
-<td>the name of the shortcode to be called for gallery format and display. You can code "mla_gallery" or "no" to disable the alternate shortcode processing.</td>
+<td>the name of the shortcode to be called for gallery format and display. You can code "mla_gallery" (recommended) or "no" to disable the alternate shortcode processing.</td>
 </tr>
 <tr>
 <td class="mla-doc-table-label">mla_alt_ids_name</td>
@@ -3681,6 +3716,10 @@ The item-level substitution parameter names are:
 <td>attachment post_parent (ID)</td>
 </tr>
 <tr>
+<td class="mla-doc-table-label">parent_name</td>
+<td>post_name of the parent, or an empty string</td>
+</tr>
+<tr>
 <td class="mla-doc-table-label">parent_title</td>
 <td>post_title of the parent, or '(unattached)'</td>
 </tr>
@@ -3691,6 +3730,9 @@ The item-level substitution parameter names are:
 <tr>
 <td class="mla-doc-table-label">parent_date</td>
 <td>upload date of the parent</td>
+</tr>
+<td class="mla-doc-table-label">parent_permalink</td>
+<td>permalink to the parent</td>
 </tr>
 <tr>
 <td class="mla-doc-table-label">title</td>
@@ -3738,7 +3780,7 @@ The item-level substitution parameter names are:
 </tr>
 <tr>
 <td class="mla-doc-table-label">file_url</td>
-<td>attachment guid</td>
+<td>attachment guid; full path and file name in URL format</td>
 </tr>
 <tr>
 <td class="mla-doc-table-label">author_id</td>
@@ -3999,7 +4041,7 @@ There are eleven prefix values for field-level parameters. Prefix values must be
 		Though the specification is not currently maintained by any industry or standards organization, almost all camera manufacturers use it. It is also supported by many image editing programs such as Adobe PhotoShop.
 		For this category, you can code any of the field names embedded in the image by the camera or editing software. There is no official list of standard field names, so you just have to know the names your camera and software use; field names are case-sensitive.
 		<br />&nbsp;<br />
-		You can find more information in the <a href="http://en.wikipedia.org/wiki/Exchangeable_image_file_format" title="Exchangeable image file format Wikipedia article" target="_blank">Exchangeable image file format</a> article on Wikipedia. You can find External Links to EXIF standards and tag listings at the end of the Wikipedia article.
+		You can find more information in the <a href="https://en.wikipedia.org/wiki/Exif" title="Exchangeable image file format Wikipedia article" target="_blank">Exchangeable image file format</a> article on Wikipedia. You can find External Links to EXIF standards and tag listings at the end of the Wikipedia article.
 		<br />&nbsp;<br />
 		MLA uses a standard PHP function, <a href="http://php.net/manual/en/function.exif-read-data.php" title="PHP Manual page for exif_read_data" target="_blank">exif_read_data</a>, to extract EXIF data from images. The function returns three arrays in addition to the raw EXIF data; COMPUTED, THUMBNAIL and COMMENT. You can access the array elements by prefacing the element you want with the array name. For example, the user comment text is available as "COMPUTED.UserComment" and "COMPUTED.UserCommentEncoding". You can also get "COMPUTED.Copyright" and its two parts (if present), "COMPUTED.Copyright.Photographer" and "COMPUTED.Copyright.Editor". The THUMBNAIL and COMMENT arrays work in a similar fashion.
 		<br />&nbsp;<br />
@@ -4606,7 +4648,7 @@ The MLA enhanced values for "Other Tags" are:</p>
 </p>
 <h4>Field-level enhanced EXIF GPS values</h4>
 <p>
-There are three basic forms of writing geographic coordinates; they are explained in a Wikipedia article, <a href="http://en.wikipedia.org/wiki/Geographic_coordinate_conversion" title="Wikipedia on Geographic coordinate conversion" target="_blank">Geographic coordinate conversion</a>. The <a href="http://www.cipa.jp/english/hyoujunka/kikaku/pdf/DC-008-2010_E.pdf" title="EXIF Version 2.3 specification" target="_blank">Exif Standard version 2.3</a> (PDF) document explains the structure and defines the rules for 32 GPS elements.
+There are three basic forms of writing geographic coordinates; they are explained in a Wikipedia article, <a href="http://en.wikipedia.org/wiki/Geographic_coordinate_conversion" title="Wikipedia on Geographic coordinate conversion" target="_blank">Geographic coordinate conversion</a>. The <a href="http://www.cipa.jp/std/documents/e/DC-008-2012_E.pdf" title="EXIF Version 2.3 specification" target="_blank">Exif Standard version 2.3</a> (PDF) and <a href="http://www.cipa.jp/std/documents/e/DC-008-Translation-2016-E.pdf" title="EXIF Version 2.31 specification" target="_blank">Exif Standard version 2.3</a> (PDF) documents explain the structure and defines the rules for 32 GPS elements.
 </p>
 <p>
 The native format of this data is somewhat complicated, so MLA converts the most common elements into a variety of convenient formats. You can use the enhanced values as-is or use them in a Content Template to compose the format(s) you need. You can access the native values with the names defined in the EXIF specification, e.g., "GPSLatitude". The enhanced values are provided in th "GPS" array and accessed with compound names, e.g., "GPS.Latitude". The MLA enhanced values are:</p>
@@ -6555,6 +6597,10 @@ Once that line is added to the <code>wp-config.php</code> file the "Debug" tab w
 <tr>
 <td class="mla-doc-table-label">8, or 0x0008</td>
 <td>writes MLA-specific messages to the log for thumbnail generation functions supporting the <code>[mla_gallery mla_viewer=...]</code> parameter.</td>
+</tr>
+<tr>
+<td class="mla-doc-table-label">16, or 0x0010</td>
+<td>writes MLA-specific messages to the log for IPTC, EXIF, XMP and PDF metadata generation.</td>
 </tr>
 </table>
 <p>

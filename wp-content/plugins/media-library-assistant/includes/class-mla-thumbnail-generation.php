@@ -141,11 +141,20 @@ class MLA_Thumbnail {
 			return $template_array;
 		}
 
-		$template_array = MLACore::mla_load_template( $file_name );
+		// Retain other filters' additions
+		if ( empty( $template_array ) ) {
+			$template_array = MLACore::mla_load_template( $file_name );
+		}
+		
 		$help_array = MLACore::mla_load_template( 'help-for-thumbnail_generation.tpl' );
 
-		if ( isset( $template_array['sidebar'] ) ) {
-			$template_array['sidebar'] .= $help_array['sidebar'];
+		if ( isset( $help_array['sidebar'] ) ) {
+			if ( isset( $template_array['sidebar'] ) ) {
+				$template_array['sidebar'] .= $help_array['sidebar'];
+			} else {
+				$template_array['sidebar'] = $help_array['sidebar'];
+			}
+			
 			unset( $help_array['sidebar'] );
 		}
 
@@ -456,6 +465,11 @@ class MLA_Thumbnail {
 			unset( $_POST['s'] );
 			unset( $_GET['s'] );
 
+			// Clear the pagination control
+			unset( $_REQUEST['paged'] );
+			unset( $_POST['paged'] );
+			unset( $_GET['paged'] );
+
 			$_REQUEST['ids'] = MLA_Thumbnail::$bulk_action_includes;
 			$_REQUEST['heading_suffix'] = __( 'Generated Thumbnails', 'media-library-assistant' );
 		}
@@ -553,7 +567,7 @@ class MLA_Thumbnail {
 	/**
 	 * Filter the "sticky" submenu URL parameters
 	 *
-	 * Maintains the pll_view and list of Bulk Translate items in the URLs for paging through the results.
+	 * Maintains the list of "Generated Thumbnails" items in the URLs for filtering the table display.
 	 *
 	 * @since 2.13
 	 *
@@ -563,13 +577,9 @@ class MLA_Thumbnail {
 	 * @return	array	updated submenu_arguments.
 	 */
 	public static function mla_list_table_submenu_arguments( $submenu_arguments, $include_filters ) {
-		if ( isset( $_REQUEST['pll_view'] ) ) {
-			$submenu_arguments['pll_view'] = $_REQUEST['pll_view'];
-		}
-
 		if ( $include_filters && ( ! empty( MLA_Thumbnail::$bulk_action_includes ) ) ) {
 			$submenu_arguments['ids'] = implode( ',', MLA_Thumbnail::$bulk_action_includes );
-			$submenu_arguments['heading_suffix'] = __( 'Bulk Translations', 'media-library-assistant' );
+			$submenu_arguments['heading_suffix'] = __( 'Generated Thumbnails', 'media-library-assistant' );
 		}
 
 		return $submenu_arguments;

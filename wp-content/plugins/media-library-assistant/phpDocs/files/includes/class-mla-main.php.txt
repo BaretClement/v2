@@ -142,7 +142,7 @@ class MLA {
 	 * @return	void
 	 */
 	public static function mla_admin_init_action() {
-		static $count = 0;
+		//static $count = 0;
 		//error_log( __LINE__ . ' DEBUG: MLA::mla_admin_init_action $count = ' . var_export( $count++, true ), 0 );
 		
 		//error_log( __LINE__ . ' DEBUG: MLA::mla_admin_init_action referer = ' . var_export( wp_get_referer(), true ), 0 );
@@ -649,14 +649,27 @@ class MLA {
 	 * @param	string	Name of the option being changed
 	 * @param	string	New value of the option
 	 *
-	 * @return	string|void	New value if this is our option, otherwise nothing
+	 * @return	mixed	New value if this is our option, otherwise original status
 	 */
 	public static function mla_set_screen_option_filter( $status, $option, $value ) {
+		global $wp_filter;
+
+		MLACore::mla_debug_add( __LINE__ . " MLA::mla_set_screen_option_filter( {$option} ) status = " . var_export( $status, true ), MLACore::MLA_DEBUG_CATEGORY_ANY );
+		MLACore::mla_debug_add( __LINE__ . " MLA::mla_set_screen_option_filter( {$option} ) value = " . var_export( $value, true ), MLACore::MLA_DEBUG_CATEGORY_ANY );
+
+		foreach( $wp_filter['set-screen-option'] as $priority => $filters ) {
+			$debug_message = 'mla_debug $wp_filter[set-screen-option] priority = ' . var_export( $priority, true ) . '<br />';
+			foreach ( $filters as $name => $descriptor ) {
+				$debug_message .= 'filter name = ' . var_export( $name, true ) . '<br />';
+			}
+			MLACore::mla_debug_add( $debug_message, MLACore::MLA_DEBUG_CATEGORY_ANY );
+		}
+
 		if ( 'mla_entries_per_page' == $option ) {
 			return $value;
-		} elseif ( $status ) {
-			return $status;
 		}
+
+		return $status;
 	}
 
 	/**

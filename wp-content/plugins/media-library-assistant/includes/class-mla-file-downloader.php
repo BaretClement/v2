@@ -100,8 +100,8 @@ class MLAFileDownloader {
 
 	 * @return	void	echos page content and calls exit();
 	 */
-	private static function _mla_die( $message, $title = '', $response = 500 ) {
-		self::_mla_debug_add( __LINE__ . " _mla_die( '{$message}', '{$title}', '{$response}' )" );
+	public static function mla_die( $message, $title = '', $response = 500 ) {
+		self::_mla_debug_add( __LINE__ . " mla_die( '{$message}', '{$title}', '{$response}' )" );
 		exit();
 	}
 

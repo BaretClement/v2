@@ -12,8 +12,8 @@ get_header(); ?>
 		if (isset($_POST['prenom']) && isset($_POST['message'])) {
 	?>
 	<!-- -->
-	<div id="feedback-test" class="ui middle aligned grid text container" style="height: 100% !important; padding-top: 25px !important">
-		<div class="column">
+	<div id="feedback-test" class="ui middle aligned single-part height grid text container">
+		<div class="middle aligned column">
 			<?php 
 			echo $message_success;
 			$hide = "display: none !important;";

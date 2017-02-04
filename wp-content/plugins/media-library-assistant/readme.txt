@@ -3,8 +3,8 @@ Contributors: dglingren
 Donate link: http://fairtradejudaica.org/make-a-difference/donate/
 Tags: attachments, gallery, images, media, media library, tag cloud, media-tags, media tags, tags, media categories, categories, IPTC, EXIF, XMP, GPS, PDF, metadata, photos, photographs, photoblog, photo albums, lightroom, photoshop, MIME, mime-type, icon, upload, file extensions, WPML, Polylang, multilanguage, multilingual, localization
 Requires at least: 3.5.0
-Tested up to: 4.7
-Stable tag: 2.40
+Tested up to: 4.7.1
+Stable tag: 2.41
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -172,6 +172,23 @@ All of the MLA source code has been annotated with "DocBlocks", a special type o
 
 == Changelog ==
 
+= 2.41 =
+* New: The `mla-substitution-parameter-hooks-example.php` example plugin "parent:" prefix has been enhanced to provide access to item's parent post/page custom field values. Simply code the custom field name as the value following the "parent:" prefix.
+* New: A new "MLA Copy Item Example" plugin has been added. It adds a "Copy" action to the Media/Assistant admin submenu that lets you copy one or more existing MEdia LIbrary items, creating new items.
+* New: The `woofixit.php` example plugin has new tools. The "Fill ALT Text (CT)" and "Replace ALT Text (CT)" tools apply a Content Template to the Product Image/Product Gallery Images.
+* New: In the Settings/Media Library Assistant Documentation tab, "MLA Term List Examples" have been added.
+* New: A new setting for the Debug tab logs details of the IPTC, EXIF, XMP and PDF metadata generation process.
+* Fix: The minimum PHP version required by MLA has been updated from 5.4 to 5.3.
+* Fix: Some EXIF values sourced from the IFD0 section are now properly converted to string values, and are no longer overwritten by values from the WINXP section. The WINXP values are available separately, e.g., `[+exif:WINXP.Title+]`.
+* Fix: In the Settings/Media Library Assistant Documentation tab, links to EXIF information and standards have been updated.
+* Fix: The MLA Reporting value on the Settings/Media LIbrary Assistant Debug tab handles hexadedimal values, e.g. "0xFFFF", properly with PHP version 7.x.
+* Fix: IPTC/EXIF and custom field mapping rules now handle "invisible" custom fields (names beginning with underscore) correctly. 
+* Fix: For `[mla_gallery]`, a defect in applying the `mla_terms_connnector` parameter has been corrected.
+* Fix: For `[mla_gallery]` pagination controls are now properly displayed when the `mla_paginate_rows` is returned from the `mla_gallery_arguments` filter. See, for example, the "MLA tax query Example" plugin.
+* Fix: When Polylang is active, a problem with the "Attachments" column on the taxonomy edit submenu screens has been corrected.
+* Fix: Handling for the Media/Assistant "Entries per page:" option setting has been changed to work more reliably and optionally log some debug information.
+* Fix: Fatal PHP errors caused by `link=download` requests that do not specify all required parameters have been eliminated.
+
 = 2.40 =
 * New: For WordPress 4.7 and later, the **thumbnail generation Bulk Action can generate native thumbnails** for items uploaded to the Media Library before updating to WP 4.7.
 * New: The Settings/Media Library Assistant **Shortcodes tab has been re-written** with a more "WordPress-like" interface.
@@ -282,8 +299,8 @@ All of the MLA source code has been annotated with "DocBlocks", a special type o
 
 == Upgrade Notice ==
 
-= 2.40 =
-Generate WP 4.7 PDF thumbnails, new Shortcodes tab, requires less admin-mode memory, Examples tab "View" action and "Installed" view. Seventeen other enhancements, fourteen fixes.
+= 2.41 =
+Updated example plugins, EXIF improvements, PHP 5.3 compatibility, Polylang fix. Five enhancements in all, ten fixes.
 
 == Other Notes ==
 
