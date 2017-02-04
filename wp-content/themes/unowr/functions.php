@@ -574,61 +574,7 @@ function my_save_extra_profile_fields( $user_id ) {
 add_action( 'wp_ajax_ajax_filter', 'ajax_filter' );
 add_action( 'wp_ajax_nopriv_ajax_filter', 'ajax_filter' );
 
-function ajax_filter() {
-
-	global $wpdb;
-
-	$taxQuery = array();
-	$metaQuery = array();
-
-	if(isset($_POST)){
-		if(isset($_POST['ambiance']) && !empty($_POST['ambiance'])){
-			array_push($taxQuery, array(
-				'taxonomy' => 'ambiance',
-				'field' 		=> 'slug',
-				'terms'    => $_POST['ambiance']
-			));
-		}
-		if(isset($_POST['agenda']) && !empty($_POST['agenda'])){
-			array_push($taxQuery, array(
-				'taxonomy' => 'agenda',
-				'field' 		=> 'slug',
-				'terms'    => $_POST['agenda']
-			));
-		}
-		if(isset($_POST['occasion']) && !empty($_POST['occasion'])){
-			array_push($taxQuery, array(
-				'taxonomy' => 'occasion',
-				'field' 		=> 'slug',
-				'terms'    => $_POST['occasion']
-			));
-		}
-		if(isset($_POST['type_de_cuisine']) && !empty($_POST['type_de_cuisine'])){
-			array_push($taxQuery, array(
-				'taxonomy' => 'type_de_cuisine',
-				'field' 		=> 'slug',
-				'terms'    => $_POST['type_de_cuisine']
-			));
-		}
-		if(isset($_POST['prix_moyen']) && !empty($_POST['prix_moyen'])){
-			$metaQuery =  array(
-				'relation' => 'AND',
-				array(
-					'key'	  		=> 'prix_moyen',
-					'compare' 	=> '<=',
-					'value'	  	=> $_POST['prix_moyen']
-				)
-			);
-		}
-	}
-
-	$search = array(
-		'post_type' => 'restaurant',
-		'numberposts' => -1,
-		'posts_per_page' => -1,
-		'tax_query' => $taxQuery,
-		'meta_query' => $metaQuery
-	);
+function getResult($search){
 
 	global $post;
 	$query = new WP_Query($search);
@@ -671,7 +617,172 @@ function ajax_filter() {
 		}
 	}
 
-	echo json_encode($res);
+	return $res;
+
+}
+
+function ajax_filter() {
+
+	$response = array();
+
+	if(isset($_POST)){
+		if(isset($_POST['question-index'])){
+
+			$arrQuestions = array(
+				0 => array(
+					'type' => 'select',
+					'name' => 'type_de_cuisine',
+					'question' => 'type de cuisine',
+					'parent' => 0,
+				),
+				1 => array(
+					'type' => 'select',
+					'name' => 'type_de_cuisine',
+					'question' => 'type de cuisine 2',
+					'child' => 1,
+				),
+				2 => array(
+					'type' => 'input',
+					'name' => 'prix_moyen',
+					'question' => 'Prix ?',
+				),
+				3 => array(
+					'type' => 'select',
+					'name' => 'occasion',
+					'question' => 'type de occasion',
+					'parent' => 0,
+				),
+				4 => array(
+					'type' => 'select',
+					'name' => 'occasion',
+					'question' => 'type de occasion 2',
+					'child' => 1,
+				),
+				5 => array(
+					'type' => 'select',
+					'name' => 'ambiance',
+					'question' => 'type de ambiance',
+				),
+				6 => array(
+					'type' => 'input',
+					'name' => 'nb_person',
+					'question' => 'nombre de personne ?',
+				),
+			);
+
+			$current = $arrQuestions[$_POST['question-index']];
+
+			$response = array(
+				'type' => $current['type'],
+				'key' => $current['name'],
+				'label' => $current['question'],
+				'answers' => array(),
+			);
+
+			if(isset($current['parent'])) $response['parent'] = $current['parent'];
+
+			if(isset($current['child'])) {
+				$daddy = ($_POST['question-index'] == 1) ? $_POST['type_de_cuisine'] : $_POST['occasion'];
+				$theTerm = get_term_by('name', $daddy, $current['name']);
+				$question = get_terms(
+			    $current['name'],
+			    array(
+		        'parent' => $theTerm->term_id,
+			    )
+				);
+			}
+			else if($current['type'] == 'select'){
+
+				$question = get_terms(array(
+				  'taxonomy' => $current['name'],
+				  'hide_empty' => false,
+				));
+
+			}
+
+			foreach ($question as $k => $v) {
+				$response['answers'][] = $v->name;
+			}
+		}
+	}
+
+	global $wpdb;
+
+	$taxQuery = array();
+	$metaQuery = array();
+
+	if(isset($_POST)){
+		if(isset($_POST['ambiance']) && !empty($_POST['ambiance'])){
+			array_push($taxQuery, array(
+				'taxonomy' => 'ambiance',
+				'field' 		=> 'slug',
+				'terms'    => $_POST['ambiance']
+			));
+		}
+		if(isset($_POST['agenda']) && !empty($_POST['agenda'])){
+			$agenda = explode(' ', $_POST['agenda']);
+			$agendaFixed = $agenda[0] . '_';
+			$time = explode(':', array_pop($agenda));
+			$hour = $time[0];
+			$minute = array_pop($time);
+
+			if($minute > 30) $hour++;
+
+			if($hour < 15) $agendaFixed .= 'midi';
+			else $agendaFixed .= 'soir';
+
+			array_push($taxQuery, array(
+				'taxonomy' => 'agenda',
+				'field' 		=> 'slug',
+				'terms'    => $agendaFixed
+			));
+		}
+		if(isset($_POST['occasion']) && !empty($_POST['occasion'])){
+			array_push($taxQuery, array(
+				'taxonomy' => 'occasion',
+				'field' 		=> 'slug',
+				'terms'    => $_POST['occasion']
+			));
+		}
+		if(isset($_POST['type_de_cuisine']) && !empty($_POST['type_de_cuisine'])){
+			array_push($taxQuery, array(
+				'taxonomy' => 'type_de_cuisine',
+				'field' 		=> 'slug',
+				'terms'    => $_POST['type_de_cuisine']
+			));
+		}
+		if(isset($_POST['prix_moyen']) && !empty($_POST['prix_moyen'])){
+			$metaQuery =  array(
+				'relation' => 'AND',
+				array(
+					'key'	  		=> 'prix_moyen',
+					'compare' 	=> '<=',
+					'value'	  	=> $_POST['prix_moyen']
+				)
+			);
+		}
+	}
+
+	$search = array(
+		'post_type' => 'restaurant',
+		'numberposts' => -1,
+		'posts_per_page' => -1,
+		'tax_query' => $taxQuery,
+		'meta_query' => $metaQuery
+	);
+
+	$res = getResult($search);
+
+	if(count($res) < 3){
+
+	}
+
+	$send = array(
+		'question' => $response,
+		'result' => $res,
+	);
+
+	echo json_encode($send);
 	wp_die();
 }
 

@@ -1,8 +1,58 @@
 <?php
+
+$ambianceTerm = get_terms(array(
+  'taxonomy' => 'ambiance',
+  'hide_empty' => false,
+));
+
+$ambiance = array();
+foreach ($ambianceTerm as $k => $v) {
+	$ambiance[] = $v->name;
+}
+
+$occasionTerm = get_terms(array(
+  'taxonomy' => 'occasion',
+  'hide_empty' => false,
+));
+
+$occasion = array();
+foreach ($occasionTerm as $k => $v) {
+	$occasion[] = $v->name;
+}
+
+$type_de_cuisineTerm = get_terms(array(
+  'taxonomy' => 'type_de_cuisine',
+  'hide_empty' => false,
+));
+
+$type_de_cuisine = array();
+foreach ($type_de_cuisineTerm as $k => $v) {
+	$type_de_cuisine[] = $v->name;
+}
+
 /*
 Template Name: BOT test
 */
 get_header(); ?>
+
+<script>
+	var questions = [{
+    type: "select",
+    label: "Quel occasion ?",
+    answers: <?php echo json_encode($occasion); ?>
+	},
+	{
+    type: "select",
+    label: "Quel ambiance ?",
+    answers: <?php echo json_encode($ambiance); ?>
+	},
+	{
+    type: "select",
+    label: "Quel type de cuisine ?",
+    answers: <?php echo json_encode($type_de_cuisine); ?>
+	}];
+</script>
+
 </div>
 	
 	<!-- -->
