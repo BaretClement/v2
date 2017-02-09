@@ -630,40 +630,45 @@ function ajax_filter() {
 
 			$arrQuestions = array(
 				0 => array(
-					'type' => 'select',
-					'name' => 'type_de_cuisine',
-					'question' => 'type de cuisine',
-					'parent' => 0,
-				),
-				1 => array(
-					'type' => 'select',
-					'name' => 'type_de_cuisine',
-					'question' => 'type de cuisine 2',
-					'child' => 1,
-				),
-				2 => array(
 					'type' => 'input',
 					'name' => 'prix_moyen',
-					'question' => 'Prix ?',
+					'question' => 'Quel est ton budget maximum pour un menu ?',
+				),
+				1 => array(
+					'type' => 'date',
+					'name' => 'agenda',
+					'question' => 'Quand souhaites-tu réserver ?',
+				),
+				2 => array(
+					'type' => 'select',
+					'name' => 'type_de_cuisine',
+					'question' => 'Il y a un type de cuisine en particulier ?',
+					'parent' => 0,
 				),
 				3 => array(
 					'type' => 'select',
-					'name' => 'occasion',
-					'question' => 'type de occasion',
-					'parent' => 0,
+					'name' => 'type_de_cuisine',
+					'question' => 'type_de_cuisine 2',
+					'child' => 1,
 				),
 				4 => array(
+					'type' => 'select',
+					'name' => 'occasion',
+					'question' => 'Il y a une occasion en particulier ?',
+					'parent' => 0,
+				),
+				5 => array(
 					'type' => 'select',
 					'name' => 'occasion',
 					'question' => 'type de occasion 2',
 					'child' => 1,
 				),
-				5 => array(
+				6 => array(
 					'type' => 'select',
 					'name' => 'ambiance',
 					'question' => 'type de ambiance',
 				),
-				6 => array(
+				7 => array(
 					'type' => 'input',
 					'name' => 'nb_person',
 					'question' => 'nombre de personne ?',

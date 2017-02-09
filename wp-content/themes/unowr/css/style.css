@@ -373,16 +373,11 @@ cf-chat-response.user text thinking {
     width: 100% !important;
   }
   #multi-content-part{
-    border: 4px dotted #E0E0E0;
   }
   #blog-part, #concept-part, #team-part {
     width: 100% !important;
   }
   #blog-part{
-    border-top: 4px dotted #E0E0E0;
-    border-bottom: 4px dotted #E0E0E0;
-    border-right: none !important;
-    border-right: none !important;
     padding: 50px 0;
   }
   #concept-part {
@@ -431,8 +426,6 @@ cf-chat-response.user text thinking {
     h3 {font-size: 1.5rem !important;}
     #blog-part {
       margin: 50px 0;
-      border-left: 3px dotted #E0E0E0;
-      border-right: 3px dotted #E0E0E0;
     }
     img.mobile{display: none !important}
 }
@@ -443,8 +436,6 @@ cf-chat-response.user text thinking {
     h3 {font-size: 1.6rem !important;}
     #blog-part {
       margin: 50px 0;
-      border-left: 3px dotted #E0E0E0;
-      border-right: 3px dotted #E0E0E0;
     }
     img.mobile{display: none !important}
 }

@@ -98,7 +98,7 @@ $(document).ready(function(){
     {
       type: "input",
       key: "name",
-      label: "hello from input"
+      label: "hello, comment tu t'appelles ?"
     }
   ];
 
@@ -122,10 +122,10 @@ $(document).ready(function(){
           monthFirst: false,
           ampm: false,
           text: {
-              days: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+              days: ['L', 'M', 'M', 'J', 'V', 'S', 'D'],
               months: months,
               monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-              today: 'Today',
+              today: "Aujoud'hui",
               now: 'Now',
               am: 'AM',
               pm: 'PM'
@@ -200,7 +200,10 @@ $(document).ready(function(){
                       }
                       lastResult.shift()
                     }
-                    submitform(res)
+                    submitform({
+                      info: formResult,
+                      resto: res
+                    })
                   }else {
                     currentKey = json.question.key
                     changeForm(json.question);

@@ -44,7 +44,8 @@ get_header( '' ); ?>
 				<p>Rien de plus simple, seulement trois grandes étapes !</p>
 			</div>
 		</div>
-		<div class="ui grid stackable two column container">
+		<!-- 01 -->
+		<div class="ui grid two column container">
 			<div id="mock-up" class="column">
 				<img src="<?php echo get_template_directory_uri(); ?>/css/img/iphone.svg" class="ui fluid image">
 			</div>
@@ -58,8 +59,8 @@ get_header( '' ); ?>
 			</div>
 
 		</div>
-
-		<div class="ui no padding grid stackable two column mobile reversed container">
+		<!-- 02 -->
+		<div class="ui no padding stackable grid two column mobile reversed container">
 
 			<div id="steps" class="middle aligned column">
 				<h3 class="ui large header right aligned">
@@ -73,7 +74,7 @@ get_header( '' ); ?>
 				<img src="<?php echo get_template_directory_uri(); ?>/css/img/iphone.svg" class="ui fluid image">
 			</div>
 		</div>
-
+		<!-- 03 -->
 		<div class="ui grid stackable two column container">
 			<div id="mock-up" class="column">
 				<img src="<?php echo get_template_directory_uri(); ?>/css/img/iphone.svg" class="ui fluid image">
@@ -93,22 +94,16 @@ get_header( '' ); ?>
 		<!-- PART -->
 		<div id="multi-content-part" class="ui center aligned equal width stackable light grey grid">	
 			
-			<div id="concept-part" class="five wide middle aligned padded column hvr-grow">
+			<div id="concept-part" class="middle aligned padded column hvr-grow">
 				<img src="<?php echo get_template_directory_uri(); ?>/css/img/laptop.svg" class="ui tiny margin auto image">
 				<h3>Découvrez le concept</h3>
 				<a href="<?php echo get_template_directory_uri(); ?>/concept"><button class="ui button"><i class="add icon"></i>Let's go !</button></a>
 			</div>
 
-			<div id="blog-part" class="six wide middle aligned padded column hvr-grow">
+			<div id="blog-part" class="middle aligned padded column hvr-grow">
 				<img src="<?php echo get_template_directory_uri(); ?>/css/img/breakfast.svg" class="ui tiny margin auto image">
 				<h3>Suivez notre blog</h3>
 				<a href="<?php echo get_template_directory_uri(); ?>/blog"><button class="ui button"><i class="add icon"></i>Lire les articles</button></a>
-			</div>
-
-			<div id="team-part" class="five wide middle aligned padded column hvr-grow">
-				<img src="<?php echo get_template_directory_uri(); ?>/css/img/team-work.svg" class="ui tiny margin auto image">
-				<h3>Rencontrez l'équipe</h3>
-				<a href="<?php echo get_template_directory_uri(); ?>/lequipe"><button class="ui button"><i class="add icon"></i>Voir l'équipe</button></a>
 			</div>
 
 		</div>

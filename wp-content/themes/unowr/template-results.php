@@ -7,8 +7,12 @@ get_header(); ?>
 
 </div>
 
-<?php 
+<?php
+	if (isset($_POST["json"])) {
+?>
+<?php
 	$json = json_decode(stripslashes(html_entity_decode($_POST["json"])));
+	$resto = $json->resto;
 
 	echo"<pre>";
 		var_dump($json, "\0");
@@ -54,23 +58,14 @@ get_header(); ?>
 		left: 50px;
 		color: rgba(0, 0, 0, 0.05);
 	}
-	#first-result.first-content::before{
+	.result-content-0::before{
 		content: "01";
 	}
-	#first-result.first-content::after{
-		content: "<?php  ?>€";
-	}
-	#second-result.first-content::before{
+	.result-content-1::before{
 		content: "02";
 	}
-	#second-result.first-content::after{
-		content: "<?php  ?>€";
-	}
-	#third-result.first-content::before{
+	.result-content-2::before{
 		content: "03";
-	}
-	#third-result.first-content::after{
-		content: "<?php  ?>€";
 	}
 	.category{
 		font-family: 'Lato', sans-serif;
@@ -123,55 +118,45 @@ get_header(); ?>
 
 </style>
 
+	<?php for ($i=0; $i < count($json->resto); $i++) { ?>
+		<style>
+			.result-content-<?php echo $i; ?>::after{
+				content: "<?php echo $json->resto[$i]->prix_moyen;  ?>€";
+			}
+		</style>
+		<!-- 01 -->
+		<div class="ui two column stackable no padding grid">
+			<div class="first-part height row">
+				<div id="title" class="middle aligned left floated column">
+					<div id="first-result" class="first-content result-content-<?php echo $i; ?>">
+						<div class="category"><? echo $json->resto[$i]->category; ?><sub>/ <? echo $json->resto[$i]->subcategory; ?></sub></div>
+						<div class="title"><h2><?php echo $json->resto[$i]->title ?></h2></div>
+						<div class="text"><p><?php echo $json->resto[$i]->content ?></p></div>
 
-	<!-- 01 -->
-	<div class="ui two column stackable no padding grid">
-		<div class="first-part height row">
-			<div id="title" class="middle aligned left floated column">
-				<div id="first-result" class="first-content">
-					<div class="category"><?  ?><sub>/ Sous type de cuisine</sub></div>
-					<div class="title"><h2><?php echo $title_1; ?></h2></div>
-					<div class="text"><p>Simple & rapide, tu n'as qu'à répondre à une liste de questions pour trouver le restaurant idéal.<br> En plus, tu peux réserver gratuitement !</p></div>
-					<div id="button" class="ui red button">Réserver gratuitement</div>
+						<form method="post" action="">
+							<input type="hidden" name="resto" value="<?php echo htmlspecialchars(json_encode($json->resto[$i])); ?>">
+							<input type="hidden" name="info" value="<?php echo htmlspecialchars(json_encode($json->info)); ?>">
+							<button id="button" name="resa" class="ui red button">Réserver gratuitement</button>
+						</form>
+					</div>
 				</div>
+				
+				<div id="second-content" class="middle aligned column"><img src="<?php echo get_template_directory_uri(); ?>/css/img/picture.svg" class="margin auto fluide image"></div>
 			</div>
-			
-			<div id="second-content" class="middle aligned column"><img src="<?php echo get_template_directory_uri(); ?>/css/img/picture.svg" class="margin auto fluide image"></div>
 		</div>
-	</div>
-	<!-- 01 -->
+		<!-- 01 -->
+	<?php } ?>
 
-	<!-- 02 -->
-	<div class="ui two column stackable no padding grid">
-		<div class="first-part height row">
-			<div id="title" class="middle aligned left floated column">
-				<div id="second-result" class="first-content">
-					<div class="category">Type de cuisine <sub>/ Sous type de cuisine</sub></div>
-					<div class="title"><h2><?php echo $title_2; ?></h2></div>
-					<div class="text"><p>Simple & rapide, tu n'as qu'à répondre à une liste de questions pour trouver le restaurant idéal.<br> En plus, tu peux réserver gratuitement !</p></div>
-					<div id="button" class="ui red button">Réserver gratuitement</div>
-				</div>
-			</div>
-			
-			<div id="second-content" class="middle aligned column"><img src="<?php echo get_template_directory_uri(); ?>/css/img/picture.svg" class="margin auto fluide image"></div>
-		</div>
-	</div>
-	<!-- 02 -->
-	
-	<!-- 03 -->
-	<div class="ui two column stackable no padding grid">
-		<div class="first-part height row">
-			<div id="title" class="middle aligned left floated column">
-				<div id="third-result" class="first-content">
-					<div class="category">Type de cuisine <sub>/ Sous type de cuisine</sub></div>
-					<div class="title"><h2><?php echo $title_3; ?></h2></div>
-					<div class="text"><p>Simple & rapide, tu n'as qu'à répondre à une liste de questions pour trouver le restaurant idéal.<br> En plus, tu peux réserver gratuitement !</p></div>
-					<div id="button" class="ui red button">Réserver gratuitement</div>
-				</div>
-			</div>
-			
-			<div id="second-content" class="middle aligned column"><img src="<?php echo get_template_directory_uri(); ?>/css/img/picture.svg" class="margin auto fluide image"></div>
-		</div>
-	</div>
-	<!-- 03 -->
+<?php }elseif (isset($_POST["resto"])) {  ?>
+send an email
+<?php
+	$resto = json_decode(stripslashes(html_entity_decode($_POST["resto"])));
+    $info = json_decode(stripslashes(html_entity_decode($_POST["info"])));
+
+    echo"<pre>";
+        var_dump($resto);
+        var_dump($info);
+    echo"</pre>";
+?>
+<?php }  ?>
 <?php get_footer( '' ); ?>

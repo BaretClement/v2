@@ -6,31 +6,35 @@ Template Name: search
 get_header(); ?>
 </div>
 
-<form id="form" data-form="true">
-	<input required type="text" cf-questions="" data-form="input" disabled="disabled"/>
-	<select cf-questions="" name="opinion" id="opinion" data-form="select">
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-		<option value="1">1</option>
-	</select>
-</form>
+<div class="ui grid container" cf-context>
+	<div class="column">
+		<form id="form" data-form="true">
+			<input required type="text" cf-questions="" data-form="input" disabled="disabled"/>
+			<select cf-questions="" name="opinion" id="opinion" data-form="select">
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+				<option value="1">1</option>
+			</select>
+		</form>
+	</div>
+</div>
 
 <style>
 	.conversational-form--enable-animation .cf-button.animate-in:empty {
