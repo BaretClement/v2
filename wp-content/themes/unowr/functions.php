@@ -593,12 +593,15 @@ function getResult($search){
 			}
 
 			$customFieds = get_post_custom($post->ID);
+			$image = get_field('image', $post->ID);
+
 			$res[] = array(
 				'title' => $post->post_title,
 				'name' => $post->post_name,
 				'guid' => $post->guid,
 				'id' => $post->ID,
 				'content' => $post->post_content,
+				'image' => $image['url'] ? $image['url'] : get_template_directory_uri() . '/css/img/picture.svg',
 				'prenom_du_contact' => $customFieds['prenom_du_contact'][0],
 				'nom_du_contact' => $customFieds['nom_du_contact'][0],
 				'nom_du_restaurant' => $customFieds['nom_du_restaurant'][0],
