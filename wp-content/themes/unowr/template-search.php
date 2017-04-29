@@ -6,8 +6,8 @@ Template Name: search
 get_header(); ?>
 </div>
 
-<div class="ui grid container" cf-context>
-	<div class="column">
+<div class="ui grid container container-search-wrapper">
+	<div class="column" cf-context>
 		<form id="form" data-form="true">
 			<input required type="text" cf-questions="" data-form="input" disabled="disabled"/>
 			<select cf-questions="" name="opinion" id="opinion" data-form="select">
