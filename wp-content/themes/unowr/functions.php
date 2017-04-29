@@ -575,8 +575,8 @@ add_action( 'wp_ajax_ajax_filter', 'ajax_filter' );
 add_action( 'wp_ajax_nopriv_ajax_filter', 'ajax_filter' );
 
 function getResult($search){
-
-	global $post;
+	$search["posts_per_page"] = "3";
+	$search["orderby"] = "rand";
 	$query = new WP_Query($search);
 	$posts = $query->get_posts();
 

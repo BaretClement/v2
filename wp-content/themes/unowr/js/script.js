@@ -121,6 +121,10 @@ $(document).ready(function(){
         $('.conversational-form [tag-type]').calendar({
           monthFirst: false,
           ampm: false,
+          minDate: new Date(),
+          popupOptions: {
+            position: 'top right'
+          },
           text: {
               days: ['L', 'M', 'M', 'J', 'V', 'S', 'D'],
               months: months,
