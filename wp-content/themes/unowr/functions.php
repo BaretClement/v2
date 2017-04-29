@@ -687,7 +687,7 @@ function ajax_filter() {
 			if(isset($current['parent'])) $response['parent'] = $current['parent'];
 
 			if(isset($current['child'])) {
-				$daddy = ($_POST['question-index'] == 1) ? $_POST['type_de_cuisine'] : $_POST['occasion'];
+				$daddy = ($_POST['question-index'] == 3) ? $_POST['type_de_cuisine'] : $_POST['occasion'];
 				$theTerm = get_term_by('name', $daddy, $current['name']);
 				$question = get_terms(
 			    $current['name'],
