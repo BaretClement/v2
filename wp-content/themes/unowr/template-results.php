@@ -148,10 +148,43 @@ get_header(); ?>
 	<?php } ?>
 
 <?php }elseif (isset($_POST["resto"])) {  ?>
-send an email
+<div>
+	send an email (make me pretty)
+</div>
 <?php
 	$resto = json_decode(stripslashes(html_entity_decode($_POST["resto"])));
     $info = json_decode(stripslashes(html_entity_decode($_POST["info"])));
+
+	// envoi du mail 
+	$to = "nicolas.labbe@adfab.fr"; // wp@unowr.fr
+	$subject = "resa from ". $_POST['name'];
+
+	$message = "Restau";
+	$message .= "title:" . $_POST['title'] . "\n";
+	$message .= "guid:" . $_POST['guid'] . "\n";
+	$message .= "prenom_du_contact:" . $_POST['prenom_du_contact'] . "\n";
+	$message .= "nom_du_contact:" . $_POST['nom_du_contact'] . "\n";
+	$message .= "adresse:" . $_POST['adresse'] . "\n";
+	$message .= "code_postal:" . $_POST['code_postal'] . "\n";
+	$message .= "ville:" . $_POST['ville'] . "\n";
+	$message .= "telephone:" . $_POST['telephone'] . "\n";
+	$message .= "email:" . $_POST['email'] . "\n";
+	$message .= "category:" . $_POST['category'] . "\n";
+	$message .= "subcategory:" . $_POST['subcategory'] . "\n";
+	$message .= "ambiances:" . $_POST['ambiances'] . "\n";
+	$message .= "\n";
+	$message .= "User";
+	$message .= "question:" . $_POST['question-index'] . "\n";
+	$message .= "prix_moyen:" . $_POST['prix_moyen'] . "\n";
+	$message .= "agenda:" . $_POST['agenda'] . "\n";
+	$message .= "type_de_cuisine:" . $_POST['type_de_cuisine'] . "\n";
+	$headers = "MIME-Version: 1.0" . "\r\n";
+	$headers .= "Content-type:text/html; charset=UTF-8" . "\r\n";
+	$headers = "From: clement.baret@gmail.com";
+
+	wp_mail($to, $subject, $message, $headers);
+	}
+	else{
 
     echo"<pre>";
         var_dump($resto);
