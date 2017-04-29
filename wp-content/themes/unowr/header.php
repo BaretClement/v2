@@ -28,7 +28,7 @@
 <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script> <!-- added -->
 
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/semantic.js"></script>
-<script type="text/javascript" src="https://rawgit.com/space10-community/conversational-form/master/dist/conversational-form.min.js" crossorigin></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/conv.js"></script>
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
 
 <!-- MENU -->
