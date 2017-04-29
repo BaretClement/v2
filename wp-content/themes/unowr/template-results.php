@@ -15,7 +15,7 @@ get_header(); ?>
 	$resto = $json->resto;
 
 	// echo"<pre>";
-		// var_dump($json, "\0");
+	// 	var_dump($json, "\0");
 	// echo"</pre>";
 ?>
 
@@ -141,7 +141,7 @@ get_header(); ?>
 					</div>
 				</div>
 				
-				<div id="second-content" class="middle aligned column"><img src="<?php echo get_template_directory_uri(); ?>/css/img/picture.svg" class="margin auto fluide image"></div>
+				<div id="second-content" class="middle aligned column"><img src="<?php echo $json->resto[$i]->image ?>" class="margin auto fluide image"></div>
 			</div>
 		</div>
 		<!-- 01 -->
