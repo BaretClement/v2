@@ -181,6 +181,9 @@ $(document).ready(function(){
             // if (questions[index] != null) {
               formResult[currentKey] = $('cf-chat-response').last().find('text').html()
               formResult['question-index'] = index;
+              if(typeof formResult['prix_moyen'] !== 'undefined' && formResult['prix_moyen'] !== null){
+                formResult['prix_moyen'] = parseInt(formResult['prix_moyen'])
+              }
               jQuery.post(
                 ajax_url, formResult,
                 function(response){
