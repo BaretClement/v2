@@ -57,8 +57,12 @@
 		</div>
 	</div>
 
+	<?php 
+	$template = get_post_meta( $post->ID, '_wp_page_template', true );
+	?>
+
 	<!-- Page Contents -->
-	<div class="pusher">
+	<div class="pusher <?php echo str_replace('.php', '', $template); ?>">
 		<div class="ui inverted vertical masthead center aligned no padding segment">
 			<div class="ui large secondary inverted pointing menu">
 				<div class="item" style="margin: auto 0">

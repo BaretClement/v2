@@ -174,6 +174,7 @@ $(document).ready(function(){
         var lastResult = []
         var conversationalForm = new cf.ConversationalForm({
           formEl: document.getElementById("form"),
+          context: document.querySelector('[cf-context]'),
           robotImage: bot_img, //base64 || image url // overwrite robot image, without overwritting the robot dictionary
           userImage: "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==",
           submitCallback: function() {
