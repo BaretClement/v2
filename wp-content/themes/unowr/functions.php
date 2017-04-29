@@ -105,9 +105,9 @@ add_action( 'widgets_init', 'unowr_widgets_init' );
 function unowr_scripts() {
 	wp_enqueue_style( 'unowr-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'unowr-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	// wp_enqueue_script( 'unowr-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
-	wp_enqueue_script( 'unowr-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	// wp_enqueue_script( 'unowr-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -704,7 +704,9 @@ function ajax_filter() {
 				if(isset($current['parent'])) $q['parent'] = $current['parent'];
 				$question = get_terms($q);
 			}
-
+// error_log( '-----------------');
+// error_log( print_r( $question, true ) );
+// error_log( '-----------------');
 			if(isset($question)){
 				foreach ($question as $k => $v) {
 					$response['answers'][] = $v->name;
@@ -780,6 +782,7 @@ function ajax_filter() {
 
 	$res = getResult($search);
 
+error_log("count -> " . count($res));
 	if(count($res) < 3){
 
 	}

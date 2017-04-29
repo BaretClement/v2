@@ -22,5 +22,7 @@
 	
 	<!-- FOOTER -->
 	<?php wp_footer(); ?>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/merge-scripts.js"></script>
+<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
 </body>
 </html>

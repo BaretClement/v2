@@ -1,3 +1,5 @@
+var $ = $ || jQuery
+
 /** Smooth scroll **/
 /** add "smooth-scroll" class to the <a> to activate it **/
 $(document).ready(function() {
@@ -237,4 +239,4 @@ $(document).ready(function(){
           $('body').append($form);
           $form.submit();
       }
-      });
+    });

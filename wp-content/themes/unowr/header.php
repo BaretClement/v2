@@ -16,20 +16,11 @@
 	<head>
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/style.css">
-		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/semantic.css">
+		<link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/css/merge-styles.css">
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-		<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Roboto:100,300,400,500,700,900" rel="stylesheet">
 
 		<?php wp_head(); ?>
 	</head>
-
-<script src="https://code.jquery.com/jquery-2.1.4.js"></script> <!-- modified -->
-<script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script> <!-- added -->
-
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/semantic.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/conv.js"></script>
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/script.js"></script>
 
 <!-- MENU -->
 <body id="top">
