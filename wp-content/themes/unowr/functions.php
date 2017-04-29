@@ -799,3 +799,25 @@ function ajax_filter() {
 	wp_die();
 }
 
+ add_action('init','_remove_style');
+
+
+ function _remove_style(){
+    global $post;
+    $pageID = array('1918');//Mention the page id where you do not wish to include that script
+
+    //** if(in_array($post->ID, $pageID)) {
+      wp_deregister_style('style.css');
+      wp_dequeue_style('style.css'); 
+    //** }
+ }
+
+ function custom_dequeue() {
+    wp_dequeue_style('style');
+    wp_deregister_style('style');
+
+}
+
+add_action( 'wp_enqueue_scripts', 'custom_dequeue', 9999 );
+add_action( 'wp_head', 'custom_dequeue', 9999 );
+
