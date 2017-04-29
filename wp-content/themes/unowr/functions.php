@@ -767,9 +767,10 @@ function ajax_filter() {
 			$metaQuery =  array(
 				'relation' => 'AND',
 				array(
+					'type' => 'NUMERIC',
 					'key'	  		=> 'prix_moyen',
 					'compare' 	=> '<=',
-					'value'	  	=> $_POST['prix_moyen']
+					'value'	  	=> intval($_POST['prix_moyen'])
 				)
 			);
 		}
@@ -785,7 +786,6 @@ function ajax_filter() {
 
 	$res = getResult($search);
 
-error_log("count -> " . count($res));
 	if(count($res) < 3){
 
 	}
