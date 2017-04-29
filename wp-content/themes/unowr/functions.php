@@ -705,8 +705,10 @@ function ajax_filter() {
 				$question = get_terms($q);
 			}
 
-			foreach ($question as $k => $v) {
-				$response['answers'][] = $v->name;
+			if(isset($question)){
+				foreach ($question as $k => $v) {
+					$response['answers'][] = $v->name;
+				}
 			}
 		}
 	}
