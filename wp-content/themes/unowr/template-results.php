@@ -14,9 +14,9 @@ get_header(); ?>
 	$json = json_decode(stripslashes(html_entity_decode($_POST["json"])));
 	$resto = $json->resto;
 
-	echo"<pre>";
-		var_dump($json, "\0");
-	echo"</pre>";
+	// echo"<pre>";
+		// var_dump($json, "\0");
+	// echo"</pre>";
 ?>
 
 <style type="text/css">
