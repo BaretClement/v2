@@ -1,3 +1,5 @@
+var $ = $ || jQuery
+
 /** Smooth scroll **/
 /** add "smooth-scroll" class to the <a> to activate it **/
 $(document).ready(function() {
@@ -107,7 +109,7 @@ $(document).ready(function(){
     $select.attr('disabled', 'disabled')
     $('.conversational-form .calendar').remove()
 
-    var days = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
+    var days = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
     var months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
 
     switch(question.type) {
@@ -237,4 +239,4 @@ $(document).ready(function(){
           $('body').append($form);
           $form.submit();
       }
-      });
+    });
