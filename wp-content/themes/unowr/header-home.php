@@ -59,7 +59,7 @@ img.emoji {
 }
 </style>
 <link rel="stylesheet" id="contact-form-7-css" href="<?php echo get_template_directory_uri(); ?>/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=4.6.1" type="text/css" media="all">
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type="text/javascript" src="/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
 <script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
 <link rel="https://api.w.org/" href="<?php echo get_template_directory_uri(); ?>/wp-json/">
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="<?php echo get_template_directory_uri(); ?>/xmlrpc.php?rsd">

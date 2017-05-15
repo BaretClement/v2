@@ -3,6 +3,18 @@ var $ = $ || jQuery
 /** Smooth scroll **/
 /** add "smooth-scroll" class to the <a> to activate it **/
 $(document).ready(function() {
+  $('.send-mail').on('click', function(e) {
+    var infos = $(this).attr('data-info')
+    var mail = $(this).attr('data-mail')
+    e.preventDefault();
+    console.log(infos + mail)
+    $.ajax({
+      url: "https://formspree.io/fabrice.labbe@adfab.fr", 
+      method: "POST",
+      data: {message: "data reservation : " + infos + mail},
+      dataType: "json"
+    });
+  });
   $('.smooth-scroll').on('click', function() { // Au clic sur un élément
     var page = $(this).attr('href'); // Page cible
     var speed = 750; // Durée de l'animation (en ms)

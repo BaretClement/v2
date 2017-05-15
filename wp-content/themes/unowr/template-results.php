@@ -138,7 +138,13 @@ get_header('home'); ?>
 						<form method="post" action="<?php echo get_home_url() ?>/confirmation">
 							<input type="hidden" name="resto" value="<?php echo htmlspecialchars(json_encode($json->resto[$i])); ?>">
 							<input type="hidden" name="info" value="<?php echo htmlspecialchars(json_encode($json->info)); ?>">
-							<button id="button" name="resa" class="ui black button">Réserver gratuitement</button>
+							<button id="button" 
+											name="resa" 
+											class="ui black button send-mail" 
+											data-mail="<?php echo htmlspecialchars(json_encode($json->resto[$i])); ?>"
+											data-info="<?php echo htmlspecialchars(json_encode($json->info)); ?>">
+								Réserver gratuitement
+							</button>
 						</form>
 					</div>
 				</div>
