@@ -11,14 +11,10 @@
 ?>
 	
 	<!-- FOOTER -->
-	<footer>
+	<footer style="text-align: center; background-color: #1B1C1D; color: #FFFFFF; padding: 15px">
 		<p class="footer">WE <i class="red heart icon"></i>YOU
 		<br>Version 2.0.0</p>
 	</footer>
-
-	<!-- GO TOP BUTTON  -->
-	<a href="#top" class="smooth-scroll"><button class="ui circular icon button" style="position: fixed; bottom: 20px; right: 20px;"><i class="arrow up icon"></i></button></a>
-	<!-- GO TOP BUTTON  -->
 	
 	<!-- FOOTER -->
 	<?php wp_footer(); ?>

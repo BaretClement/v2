@@ -632,6 +632,7 @@ function ajax_filter() {
 		if(isset($_POST['question-index'])){
 
 			$arrQuestions = array(
+				
 				0 => array(
 					'type' => 'input',
 					'name' => 'prix_moyen',
@@ -651,7 +652,7 @@ function ajax_filter() {
 				3 => array(
 					'type' => 'select',
 					'name' => 'type_de_cuisine',
-					'question' => 'type_de_cuisine 2',
+					'question' => 'Tu as une préférence ?',
 					'child' => 1,
 				),
 				4 => array(

@@ -7,7 +7,7 @@ get_header(); ?>
 
 </div>
 	<?php 
-		$message_success = '<div class="ui center aligned segment" style="padding: 25px"><img src="' . get_template_directory_uri() . '/css/img/avatar/4.neutral-thanks.svg" class="ui small margin auto image"><h1  style="margin: 0 !important"><b>Merci ' . $_POST['prenom'] . '!</b></h1><p style="margin: 0 !important"><br>Ta demande de contact a bien été envoyée.</p><br><p>L' . "'" . 'intérêt que tu portes à <b>UNOWR</b> compte énormément.<br>Nous te recontacterons très rapidement !</p><p>En attendant, je te propose de retourner sur la <a href="' . get_home_url() .'">homepage</a> :)</p></div>'; 
+		$message_success = '<div class="ui center aligned segment" style="padding: 25px"><img src="' . get_template_directory_uri() . '/css/img/avatar/4.neutral-thanks.svg" class="ui small margin auto image"><h1  style="margin: 0 !important"><b>Merci ' . $_POST['prenom'] . '!</b></h1><p style="margin: 0 !important"><br>Ta demande de contact a bien été envoyée.</p><br><p>L' . "'" . 'intérêt que tu portes à <b>UNOWR</b> compte énormément.<br>Nous te recontacterons très rapidement !</p><p>En attendant, je te propose de retourner sur la <a href="' . get_home_url() .'"><b>homepage</b></a> :)</p></div>'; 
 	?>
 
 	<?php

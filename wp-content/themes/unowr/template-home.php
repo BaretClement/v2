@@ -14,7 +14,7 @@ get_header( 'home' ); ?>
       <h1 class="ui inverted header">UNOWR</h1>
       <h2>Trouvez le restaurant <b>idéal</b> pour un moment <b>parfait</b> !</h2>
       <p>Simple, rapide, efficace & gratuit !</p>
-      <button class="snip1535">Chercher un restaurant</button>
+      <a href="<?php echo get_template_directory_uri(); ?>/rechercher-un-restaurant"><button class="snip1535">Chercher un restaurant</button></a>
     </div>
   </div>
   <div class="transition-bottom"></div>
@@ -35,10 +35,9 @@ get_header( 'home' ); ?>
     </div>
   </div>
     
-
+<div class="black">
   <div class="ui container w3-content">    
   <div class="mySlides ui vertical stripe quote">
-
       <div class="ui equal width stackable grid">
         <div class="row">
           <div class="column" style="padding: 0 !important">
@@ -95,6 +94,7 @@ get_header( 'home' ); ?>
       </div>
     </div>
   </div>
+</div>
 
 <script>
 var slideIndex = 1;
@@ -125,43 +125,21 @@ function showDivs(n) {
 }
 </script>
 
-
-
-  <div class="ui vertical stripe quote segment" style="border: none !important">
-      <div class="ui equal width stackable celled grid">
-        <div class="center aligned row">
-          <div class="column">
-            <h2>Tu es restaurateur ?</h2>
-            <p>Unowr t'offre une nouvelle clientèle !</p>
-            <button class="custom-btn btn-3"><span>Contacter Unowr</span></button>
-          </div>
-
-          <div class="column">
-            <h2>Un commentaire ?</h2>
-            <p>Tu utilises Unowr ? Tu as des remarques ou des suggestions ? Écris-nous !</p>
-            <button class="custom-btn btn-3"><span>Laisser un message</span></button>
-          </div>
-        </div>
-      </div>
-  </div>
-
-
-
   <div class="ui vertical stripe">
 <div id="concept-part" class="ui center aligned equal width stackable three quarter height grid container"> 
       <div class="row">
         <div class="middle aligned column">
-          <img src="<?php echo get_template_directory_uri(); ?>/css/img/stopwatch.svg" class="ui tiny margin auto image">
+          <img src="<?php echo get_template_directory_uri(); ?>/css/img/stopwatch.svg" class="ui tiny image" style="margin: auto !important">
           <h2>2 minutes</h2>
           <p>C'est le temps qu'il vous faudra pour effectuer votre recherche.</p>
         </div>
         <div class="middle aligned column">
-          <img src="<?php echo get_template_directory_uri(); ?>/css/img/box.svg" class="ui tiny margin auto image"> 
+          <img src="<?php echo get_template_directory_uri(); ?>/css/img/box.svg" class="ui tiny image" style="margin: auto !important"> 
           <h2>8 questions</h2>
           <p>C'est tout ce dont nous avons besoin pour connaître vos envies.</p>
         </div>
         <div class="middle aligned column">
-          <img src="<?php echo get_template_directory_uri(); ?>/css/img/store-concept.svg" class="ui tiny margin auto image">
+          <img src="<?php echo get_template_directory_uri(); ?>/css/img/store-concept.svg" class="ui tiny image" style="margin: auto !important">
           <h2>3 restaurants</h2>
           <p>C'est le nombre de résultats proposés. Vous n'aurez qu'à choisir !</p>
         </div>
@@ -182,6 +160,9 @@ function showDivs(n) {
               <button class="ui massive basic teal inverted icon button"><i class="icon twitter"></i></button>
               <button class="ui massive basic blue inverted icon button"><i class="icon facebook f"></i></button>
               <button class="ui massive basic purple inverted icon button"><i class="icon instagram"></i></button>
+              <br><br>
+              <p>Ou contacte nous par e-mail :<br> 
+              <u>contact@unowr.fr</u></p>
           </div>
         </div>  
       </div>

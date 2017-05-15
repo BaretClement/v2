@@ -3,13 +3,24 @@
 Template Name: resultats
 */
 
-get_header(); ?>
+get_header('home'); ?>
 
+<div id="message_results_page" class="ui two column stackable grid container; <?php echo $hidden ?>">
+	<div class="bottom aligned column" style="padding-bottom: 0 !important">
+		<img src="<?php echo get_template_directory_uri(); ?>/css/img/avatar/4.neutral-thanks.svg" class="ui large right floated rounded image" style="margin: auto !important">
+	</div>
+	<div class="middle aligned column">
+		<div class="talk-bubble tri-right left-in">
+  			<div class="talktext">
+    			<p>Voici les restaurant qui devraient te plaire !</p>
+  			</div>
+		</div>
+	</div>
+</div>
 </div>
 
-<?php
-	if (isset($_POST["json"])) {
-?>
+<?php if (isset($_POST["json"])) { ?>
+
 <?php
 	$json = json_decode(stripslashes(html_entity_decode($_POST["json"])));
 	$resto = $json->resto;
@@ -38,25 +49,9 @@ get_header(); ?>
 		padding-left: 15px;
 	}
 	#second-content{
-		padding: 100px;
 	}
 	.first-content::before{
-		font-family: 'Roboto', sans-serif;
-		font-weight: 900;
-		position: relative;
-		font-size: 250px;
-		bottom: -80px;
-		left: -100px;
-		color: rgba(0, 0, 0, 0.05);
-	}
-	.first-content::after{
-		font-family: 'Roboto', sans-serif;
-		font-weight: 900;
-		position: relative;
-		font-size: 100px;
-		bottom: -80px;
-		left: 50px;
-		color: rgba(0, 0, 0, 0.05);
+		font-size: 45px;
 	}
 	.result-content-0::before{
 		content: "01";
@@ -72,7 +67,7 @@ get_header(); ?>
 		font-size: 1.5rem;
 		font-weight: 300 !important;
 		margin-bottom: 15px;
-		text-transform: uppercase;">
+		text-transform: uppercase;
 	}
 	.category{
 		color: #F44336;
@@ -100,6 +95,15 @@ get_header(); ?>
 	.full.height.row{
 		height: 100vh;
 	}
+
+	.ui.vertical.stripe {
+    padding: 0 !important;
+	}
+
+	.row{
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
 	
 	@media only screen and (max-width: 767px) {
 		#title.column{
@@ -119,44 +123,48 @@ get_header(); ?>
 </style>
 
 	<?php for ($i=0; $i < count($json->resto); $i++) { ?>
-		<style>
-			.result-content-<?php echo $i; ?>::after{
-				content: "<?php echo $json->resto[$i]->prix_moyen;  ?>€";
-			}
-		</style>
 		<!-- 01 -->
-		<div class="ui two column stackable no padding grid">
-			<div class="first-part height row">
-				<div id="title" class="middle aligned left floated column">
+		<div class="ui vertical stripe segment container">
+			<div class="ui middle aligned stackable grid">
+			<div class="first-part row">
+				<div id="title" class="middle aligned eight wide column">
 					<div id="first-result" class="first-content result-content-<?php echo $i; ?>">
-						<div class="category"><? echo $json->resto[$i]->category; ?><sub>/ <? echo $json->resto[$i]->subcategory; ?></sub></div>
 						<div class="title"><h2><?php echo $json->resto[$i]->title ?></h2></div>
+						<div class="ui mini tag label"><? echo $json->resto[$i]->category; ?></div>  <div class="ui mini tag label"><? echo $json->resto[$i]->subcategory; ?></div>
+						<div class="text"><p>Prix moyen : <b><?php echo $json->resto[$i]->prix_moyen;  ?>€</b></p></div>
 						<div class="text"><p><?php echo $json->resto[$i]->content ?></p></div>
+						
 
-						<form method="post" action="">
+						<form method="post" action="<?php echo get_home_url() ?>/confirmation">
 							<input type="hidden" name="resto" value="<?php echo htmlspecialchars(json_encode($json->resto[$i])); ?>">
 							<input type="hidden" name="info" value="<?php echo htmlspecialchars(json_encode($json->info)); ?>">
-							<button id="button" name="resa" class="ui red button">Réserver gratuitement</button>
+							<button id="button" name="resa" class="ui black button">Réserver gratuitement</button>
 						</form>
 					</div>
 				</div>
 				
-				<div id="second-content" class="middle aligned column"><img src="<?php echo $json->resto[$i]->image ?>" class="margin auto fluide image"></div>
+				<div id="second-content" class="eight wide middle aligned column"><img src="<?php echo $json->resto[$i]->image ?>" class="margin auto fluide image"></div>
 			</div>
 		</div>
+	</div>
 		<!-- 01 -->
+
 	<?php } ?>
 
 <?php }elseif (isset($_POST["resto"])) {  ?>
-<div>
-	send an email (make me pretty)
+
+<div class="ui container">
+	<?php 
+		echo $message_success = '<div class="ui center aligned segment" style="padding: 25px"><img src="' . get_template_directory_uri() . '/css/img/avatar/4.neutral-thanks.svg" class="ui small margin auto image"><h1  style="margin: 0 !important"><b>Merci ' . $_POST['name'] . '!</b></h1><p style="margin: 0 !important"><br>Ta demande de contact a bien été envoyée.</p><br><p>L' . "'" . 'intérêt que tu portes à <b>UNOWR</b> compte énormément.<br>Nous te recontacterons très rapidement !</p><p>En attendant, je te propose de retourner sur la <a href="' . get_home_url() .'">homepage</a> :)</p></div>'; 
+	?>
 </div>
 <?php
 	$resto = json_decode(stripslashes(html_entity_decode($_POST["resto"])));
     $info = json_decode(stripslashes(html_entity_decode($_POST["info"])));
 
 	// envoi du mail 
-	$to = "nicolas.labbe@adfab.fr"; // wp@unowr.fr
+	$to = "clement.baret@gmail.com"; // wp@unowr.fr
+	
 	$subject = "resa from ". $_POST['name'];
 
 	$message = "Restau";
@@ -178,12 +186,14 @@ get_header(); ?>
 	$message .= "prix_moyen:" . $_POST['prix_moyen'] . "\n";
 	$message .= "agenda:" . $_POST['agenda'] . "\n";
 	$message .= "type_de_cuisine:" . $_POST['type_de_cuisine'] . "\n";
+	
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html; charset=UTF-8" . "\r\n";
 	$headers = "From: clement.baret@gmail.com";
 
-	wp_mail($to, $subject, $message, $headers);
+	mail($to, $subject, $message, $headers);
 	}
+
 	else{
 
     echo"<pre>";
@@ -192,4 +202,13 @@ get_header(); ?>
     echo"</pre>";
 ?>
 <?php }  ?>
+<div class="ui inverted vertical stripe segment" style="padding: 50px 0 50px 0 !important">
+	<div class="ui grid container">
+		<div class="center aligned column">
+			<p>Si aucun restaurant ne te convient, tu peux essayer à nouveau.<br>
+			Nous te proposerons d'autres restaurants !</p>
+			<a href="<?php echo get_template_directory_uri(); ?>/rechercher-un-restaurant"><div class="ui button">Rechercher à nouveau</div></a>
+		</div>
+	</div>
+</div>
 <?php get_footer( '' ); ?>
