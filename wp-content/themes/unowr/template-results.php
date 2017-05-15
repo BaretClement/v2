@@ -141,7 +141,7 @@ get_header('home'); ?>
 							<button id="button" 
 											name="resa" 
 											class="ui black button send-mail" 
-											data-mail="<?php echo htmlspecialchars(json_encode($json->resto[$i])); ?>"
+											data-resto="<?php echo htmlspecialchars(json_encode($json->resto[$i])); ?>"
 											data-info="<?php echo htmlspecialchars(json_encode($json->info)); ?>">
 								Réserver gratuitement
 							</button>
