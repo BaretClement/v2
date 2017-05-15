@@ -47,7 +47,7 @@ Template Name: confirmation
 <div class="center aligned column" style="margin: auto">
 <div class="ui center aligned segment" style="padding: 25px">
 	<img src="<?php echo get_template_directory_uri() ?>/css/img/avatar/4.neutral-thanks.svg" class="ui medium image" style="margin: auto; margin-bottom: 50px">
-	<h1 style="margin: 0 !important"><b>Merci !</b></h1>
+	<h1 style="margin: 0 !important"><b>Merci!</b></h1>
 	<p style="margin: 0 !important"><br>Ta demande de contact a bien été envoyée.</p>
 	<br>
 	<p>L'intérêt que tu portes à <b>UNOWR</b> compte énormément.

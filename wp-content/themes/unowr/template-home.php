@@ -46,8 +46,7 @@ get_header( 'home' ); ?>
           <div class="middle aligned column" style="padding-bottom: 0 !important">
             <h3><span style="font-family: 'SFDisplay medium'; font-size: 60px; color: #E0E0E0">01.</span><br>
             Répond aux questions</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Nous te posons une suite de questions afin de connaitre tes envies.</p>
             <button class="ui icon disabled button">Étape 1</button>
             <button class="ui icon button" onclick="plusDivs(1)">Étape 2</button>
             <button class="ui icon button" onclick="plusDivs(2)">Étape 3</button>
@@ -65,8 +64,7 @@ get_header( 'home' ); ?>
           <div class="middle aligned column" style="padding-bottom: 0 !important">
             <h3><span style="font-family: 'SFDisplay medium'; font-size: 60px; color: #E0E0E0">02.</span><br>
             Choisi ton restaurant</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>À la fin des questions, nous te proposons trois restaurants les plus pertinents. Tu peux choisir le restaurant qui te plait.</p>
             <button class="ui icon button" onclick="plusDivs(-1)">Étape 1</button>
             <button class="ui icon disabled button">Étape 2</button>
             <button class="ui icon button" onclick="plusDivs(1)">Étape 3</button>
@@ -84,8 +82,7 @@ get_header( 'home' ); ?>
           <div class="middle aligned column" style="padding-bottom: 0 !important">
             <h3><span style="font-family: 'SFDisplay medium'; font-size: 60px; color: #E0E0E0">03.</span><br>
             Réserve gratuitement</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>C'est simple et rapide, tu cliques et c'est réservé !</p>
             <button class="ui icon button" onclick="plusDivs(-2)">Étape 1</button>
             <button class="ui icon button" onclick="plusDivs(-1)">Étape 2</button>
             <button class="ui icon button disabled">Étape 3</button>
@@ -131,17 +128,17 @@ function showDivs(n) {
         <div class="middle aligned column">
           <img src="<?php echo get_template_directory_uri(); ?>/css/img/stopwatch.svg" class="ui tiny image" style="margin: auto !important">
           <h2>2 minutes</h2>
-          <p>C'est le temps qu'il vous faudra pour effectuer votre recherche.</p>
+          <p>C'est le temps qu'il te faudra pour trouver LE restaurant parfait.</p>
         </div>
         <div class="middle aligned column">
           <img src="<?php echo get_template_directory_uri(); ?>/css/img/box.svg" class="ui tiny image" style="margin: auto !important"> 
-          <h2>8 questions</h2>
-          <p>C'est tout ce dont nous avons besoin pour connaître vos envies.</p>
+          <h2>8 questions (max)</h2>
+          <p>C'est tout ce dont nous avons besoin pour connaître tes envies.</p>
         </div>
         <div class="middle aligned column">
           <img src="<?php echo get_template_directory_uri(); ?>/css/img/store-concept.svg" class="ui tiny image" style="margin: auto !important">
           <h2>3 restaurants</h2>
-          <p>C'est le nombre de résultats proposés. Vous n'aurez qu'à choisir !</p>
+          <p>C'est le nombre de résultats proposés. Tu n'as plus qu'à choisir !</p>
         </div>
         <br>
       </div>

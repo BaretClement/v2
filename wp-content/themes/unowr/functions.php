@@ -639,40 +639,45 @@ function ajax_filter() {
 					'question' => 'Quel est ton budget maximum pour un menu ?',
 				),
 				1 => array(
+					'type' => 'input',
+					'name' => 'telephone',
+					'question' => 'As-tu un numéro auquel nous pourrons te joindre en cas de réservation ?',
+				),
+				2 => array(
 					'type' => 'date',
 					'name' => 'agenda',
 					'question' => 'Quand souhaites-tu réserver ?',
 				),
-				2 => array(
+				3 => array(
 					'type' => 'select',
 					'name' => 'type_de_cuisine',
 					'question' => 'Il y a un type de cuisine en particulier ?',
 					'parent' => 0,
 				),
-				3 => array(
+				4 => array(
 					'type' => 'select',
 					'name' => 'type_de_cuisine',
 					'question' => 'Tu as une préférence ?',
 					'child' => 1,
 				),
-				4 => array(
+				5 => array(
 					'type' => 'select',
 					'name' => 'occasion',
 					'question' => 'Il y a une occasion en particulier ?',
 					'parent' => 0,
 				),
-				5 => array(
+				6 => array(
 					'type' => 'select',
 					'name' => 'occasion',
 					'question' => 'type de occasion 2',
 					'child' => 1,
 				),
-				6 => array(
+				7 => array(
 					'type' => 'select',
 					'name' => 'ambiance',
 					'question' => 'type de ambiance',
 				),
-				7 => array(
+				8 => array(
 					'type' => 'input',
 					'name' => 'nb_person',
 					'question' => 'nombre de personne ?',
@@ -691,7 +696,7 @@ function ajax_filter() {
 			if(isset($current['parent'])) $response['parent'] = $current['parent'];
 
 			if(isset($current['child'])) {
-				$daddy = ($_POST['question-index'] == 3) ? $_POST['type_de_cuisine'] : $_POST['occasion'];
+				$daddy = ($_POST['question-index'] == 4) ? $_POST['type_de_cuisine'] : $_POST['occasion'];
 				$theTerm = get_term_by('name', $daddy, $current['name']);
 				$question = get_terms(
 			    $current['name'],
