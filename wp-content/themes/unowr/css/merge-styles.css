@@ -447,7 +447,7 @@ cf-chat-response.user text thinking {
 }
 
 .pushable > .pusher.template-search .container-search-wrapper {
-  height: calc(100% - 155px);
+  height: calc(100vh - 155px);
   position: relative;
 }
 

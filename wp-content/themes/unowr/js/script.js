@@ -301,3 +301,11 @@ $(document).ready(function(){
           $form.submit();
       }
     });
+
+
+$.ajax({
+    url: "https://formspree.io/you@email.com", 
+    method: "POST",
+    data: {message: "hello!"},
+    dataType: "json"
+});
