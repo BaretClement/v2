@@ -38,30 +38,32 @@ $(document).ready(function() {
       // url: "https://formspree.io/fabrice.labbe@adfab.fr", 
       method: "POST",
       data: {
-        message:  "data user : " + 
-                  "\n " + infos["name"] + 
-                  "\n " + infos["prix_moyen"] + 
-                  "\n " + infos["telephone"] + 
-                  "\n " + infos["agenda"] + 
+        message:  "Informations utilisateur" + 
+                  "\n " + 
+                  "\n " + "Nom : " + infos["name"] + 
+                  "\n " + "Prix moyen indiqué : " + infos["prix_moyen"] + 
+                  "\n " + "Téléphone : " + infos["telephone"] + 
+                  "\n " + "Date de réservation souhaitée : " +infos["agenda"] + 
                   "\n " + infos["type_de_cuisine"] + 
-                  "data resto : " + 
-                  "\n " + resto["title"] +
-                  "\n " + resto["name"] +
-                  "\n " + resto["id"] +
-                  "\n " + resto["content"] +
-                  "\n " + resto["image"] +
-                  "\n " + resto["prenom_du_contact"] +
-                  "\n " + resto["nom_du_contact"] +
-                  "\n " + resto["nom_du_restaurant"] +
-                  "\n " + resto["adresse"] +
-                  "\n " + resto["code_postal"] +
+                  "\n " +
+                  "Informations restaurant" + 
+                  "\n " +
+                  "\n " + "Nom " + resto["nom_du_restaurant"] +
+                  "\n " + "Spécialité : " + resto["specialite"] +
+                  "\n " + "Prix moyen : " + resto["prix_moyen"] +
+                  "\n " + "Catégorie : " + resto["category"] +
+                  "\n " + "Sous-catégorie : " + resto["subcategory"] +
+                  "\n " + "Description : " + resto["content"] +
+                  "\n " + "Adresse : " + resto["adresse"] 
+                  "\n " + resto["code_postal"] 
                   "\n " + resto["ville"] +
-                  "\n " + resto["telephone"] +
-                  "\n " + resto["email"] +
-                  "\n " + resto["specialite"] +
-                  "\n " + resto["prix_moyen"] +
-                  "\n " + resto["category"] +
-                  "\n " + resto["subcategory"]
+                  "\n " +
+                  "Informations restaurateur" +
+                  "\n " + 
+                  "\n " + "Prénom : " + resto["prenom_du_contact"] +
+                  "\n " + "Nom : " + resto["nom_du_contact"] +
+                  "\n " + "Téléphone : " + resto["telephone"] +
+                  "\n " + "Email : " + resto["email"]
       },
       dataType: "json",
       success: function (response) {
