@@ -4,9 +4,10 @@ var $ = $ || jQuery
 /** add "smooth-scroll" class to the <a> to activate it **/
 $(document).ready(function() {
   $('.send-mail').on('click', function(e) {
+    var $this = $(this);
     var infos = JSON.parse($(this).attr('data-info'));
     var resto = JSON.parse($(this).attr('data-resto'));
-    // e.preventDefault();
+    e.preventDefault();
     // console.log(infos + resto)
     // console.log("data user : " + 
     //               "\n " + infos["name"] + 
@@ -34,6 +35,7 @@ $(document).ready(function() {
     //               "\n " + resto["subcategory"])
     $.ajax({
       url: "https://formspree.io/clement.baret@gmail.com", 
+      // url: "https://formspree.io/fabrice.labbe@adfab.fr", 
       method: "POST",
       data: {
         message:  "data user : " + 
@@ -61,7 +63,14 @@ $(document).ready(function() {
                   "\n " + resto["category"] +
                   "\n " + resto["subcategory"]
       },
-      dataType: "json"
+      dataType: "json",
+      success: function (response) {
+        console.log(">>>>>>>>>> SUCCESS : " + JSON.stringify(response))
+        $this.parent( "form" ).submit();
+      },
+      error: function (xhr, ajaxOptions, thrownError) {
+        console.log(">>>>>>>>>> ERROR : " + xhr.responseText)
+      }
     });
   });
   $('.smooth-scroll').on('click', function() { // Au clic sur un élément
