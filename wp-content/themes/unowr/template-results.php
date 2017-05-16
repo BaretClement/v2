@@ -12,7 +12,7 @@ get_header('home'); ?>
 	<div class="middle aligned column">
 		<div class="talk-bubble tri-right left-in">
   			<div class="talktext">
-    			<p>Voici les restaurant qui devraient te plaire !</p>
+    			<p>Voici les restaurants qui devraient te plaire !</p>
   			</div>
 		</div>
 	</div>

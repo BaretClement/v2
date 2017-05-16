@@ -12,7 +12,7 @@ get_header( 'home' ); ?>
 
     <div class="ui text container">
       <h1 class="ui inverted header">UNOWR</h1>
-      <h2>Trouvez le restaurant <b>idéal</b> pour un moment <b>parfait</b> !</h2>
+      <h2>Trouve le restaurant <b>idéal</b> pour un moment <b>parfait</b> !</h2>
       <p>Simple, rapide, efficace & gratuit !</p>
       <a href="<?php echo get_template_directory_uri(); ?>/rechercher-un-restaurant"><button class="snip1535">Chercher un restaurant</button></a>
     </div>
@@ -64,7 +64,7 @@ get_header( 'home' ); ?>
           <div class="middle aligned column" style="padding-bottom: 0 !important">
             <h3><span style="font-family: 'SFDisplay medium'; font-size: 60px; color: #E0E0E0">02.</span><br>
             Choisi ton restaurant</h3>
-            <p>À la fin des questions, nous te proposons trois restaurants les plus pertinents. Tu peux choisir le restaurant qui te plait.</p>
+            <p>À la fin des questions, nous te proposons trois restaurants les plus pertinents. Tu peux choisir le restaurant qui te plaît.</p>
             <button class="ui icon button" onclick="plusDivs(-1)">Étape 1</button>
             <button class="ui icon disabled button">Étape 2</button>
             <button class="ui icon button" onclick="plusDivs(1)">Étape 3</button>
