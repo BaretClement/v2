@@ -11387,7 +11387,7 @@ $.fn.popup.settings = {
   addTouchEvents : true,
 
   // default position relative to element
-  position       : 'top left',
+  position       : 'top center',
 
   // name of variation to use
   variation      : '',

@@ -362,11 +362,26 @@ cf-chat-response.user text thinking {
       box-shadow: none !important;
       padding: 3rem 1rem !important;
     }  
-    .ui.popup.calendar.bottom.left.transition.visible{
-      bottom: auto;
-      right: auto;
-      left: 0px;
-      top: 0px;
+    .ui.top.right.popup.calendar{
+      bottom: 45px!important; 
+      right: auto!important; 
+      top: auto!important; 
+      left: -22.5px !important;  
+      display: block !important;
+    }
+    .ui.bottom.left.popup.calendar{
+      bottom: 45px!important; 
+      right: auto!important; 
+      top: auto!important; 
+      left: -22.5px !important;  
+      display: block !important;
+    }
+    .ui.bottom.right.popup.calendar{
+      bottom: 45px!important; 
+      right: auto!important; 
+      top: auto!important; 
+      left: -22.5px !important;  
+      display: block !important;
     }
 #intro-content::before{
   display: none;
