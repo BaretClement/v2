@@ -362,6 +362,12 @@ cf-chat-response.user text thinking {
       box-shadow: none !important;
       padding: 3rem 1rem !important;
     }  
+    .ui.popup.calendar.bottom.left.transition.hidden{
+      bottom: auto;
+      right: auto;
+      left: 0px;
+      top: 0px;
+    }
 #intro-content::before{
   display: none;
 }
