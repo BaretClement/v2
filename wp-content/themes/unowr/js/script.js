@@ -179,7 +179,7 @@ $(document).ready(function(){
     $select.attr('disabled', 'disabled')
     $('.conversational-form .calendar').remove()
 
-    var days = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche']
+    var days = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi']
     var months = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"]
 
     switch(question.type) {
@@ -195,10 +195,10 @@ $(document).ready(function(){
           ampm: false,
           minDate: new Date(),
           popupOptions: {
-            position: 'top right'
+            position: 'top center'
           },
           text: {
-              days: ['L', 'M', 'M', 'J', 'V', 'S', 'D'],
+              days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
               months: months,
               monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
               today: "Aujoud'hui",
