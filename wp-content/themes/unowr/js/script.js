@@ -7,33 +7,33 @@ $(document).ready(function() {
     var infos = JSON.parse($(this).attr('data-info'));
     var resto = JSON.parse($(this).attr('data-resto'));
     // e.preventDefault();
-    console.log(infos + resto)
-    console.log("data user : " + 
-                  "\n " + infos["name"] + 
-                  "\n " + infos["prix_moyen"] + 
-                  "\n " + infos["telephone"] + 
-                  "\n " + infos["agenda"] + 
-                  "\n " + infos["type_de_cuisine"] + 
-                  "data resto : " + 
-                  "\n " + resto["title"] +
-                  "\n " + resto["name"] +
-                  "\n " + resto["id"] +
-                  "\n " + resto["content"] +
-                  "\n " + resto["image"] +
-                  "\n " + resto["prenom_du_contact"] +
-                  "\n " + resto["nom_du_contact"] +
-                  "\n " + resto["nom_du_restaurant"] +
-                  "\n " + resto["adresse"] +
-                  "\n " + resto["code_postal"] +
-                  "\n " + resto["ville"] +
-                  "\n " + resto["telephone"] +
-                  "\n " + resto["email"] +
-                  "\n " + resto["specialite"] +
-                  "\n " + resto["prix_moyen"] +
-                  "\n " + resto["category"] +
-                  "\n " + resto["subcategory"])
+    // console.log(infos + resto)
+    // console.log("data user : " + 
+    //               "\n " + infos["name"] + 
+    //               "\n " + infos["prix_moyen"] + 
+    //               "\n " + infos["telephone"] + 
+    //               "\n " + infos["agenda"] + 
+    //               "\n " + infos["type_de_cuisine"] + 
+    //               "data resto : " + 
+    //               "\n " + resto["title"] +
+    //               "\n " + resto["name"] +
+    //               "\n " + resto["id"] +
+    //               "\n " + resto["content"] +
+    //               "\n " + resto["image"] +
+    //               "\n " + resto["prenom_du_contact"] +
+    //               "\n " + resto["nom_du_contact"] +
+    //               "\n " + resto["nom_du_restaurant"] +
+    //               "\n " + resto["adresse"] +
+    //               "\n " + resto["code_postal"] +
+    //               "\n " + resto["ville"] +
+    //               "\n " + resto["telephone"] +
+    //               "\n " + resto["email"] +
+    //               "\n " + resto["specialite"] +
+    //               "\n " + resto["prix_moyen"] +
+    //               "\n " + resto["category"] +
+    //               "\n " + resto["subcategory"])
     $.ajax({
-      url: "https://formspree.io/fabrice.labbe@adfab.fr", 
+      url: "https://formspree.io/clement.baret@gmail.com", 
       method: "POST",
       data: {
         message:  "data user : " + 
