@@ -54,8 +54,8 @@ $(document).ready(function() {
                   "\n " + "Catégorie : " + resto["category"] +
                   "\n " + "Sous-catégorie : " + resto["subcategory"] +
                   "\n " + "Description : " + resto["content"] +
-                  "\n " + "Adresse : " + resto["adresse"] 
-                  "\n " + resto["code_postal"] 
+                  "\n " + "Adresse : " + resto["adresse"] +
+                  "\n " + resto["code_postal"] +
                   "\n " + resto["ville"] +
                   "\n " +
                   "Informations restaurateur" +
