@@ -44,11 +44,10 @@ $(document).ready(function() {
                   "\n " + "Prix moyen indiqué : " + infos["prix_moyen"] + 
                   "\n " + "Téléphone : " + infos["telephone"] + 
                   "\n " + "Date de réservation souhaitée : " +infos["agenda"] + 
-                  "\n " + infos["type_de_cuisine"] + 
                   "\n " +
                   "Informations restaurant" + 
                   "\n " +
-                  "\n " + "Nom " + resto["nom_du_restaurant"] +
+                  "\n " + "Nom : " + resto["nom_du_restaurant"] +
                   "\n " + "Spécialité : " + resto["specialite"] +
                   "\n " + "Prix moyen : " + resto["prix_moyen"] +
                   "\n " + "Catégorie : " + resto["category"] +
