@@ -44,6 +44,7 @@ $(document).ready(function() {
                   "\n " + "Prix moyen indiqué : " + infos["prix_moyen"] + 
                   "\n " + "Téléphone : " + infos["telephone"] + 
                   "\n " + "Date de réservation souhaitée : " +infos["agenda"] + 
+                  "\n " + "Nombre de personne(s) : " +infos["nb_person"] + 
                   "\n " +
                   "Informations restaurant" + 
                   "\n " +
