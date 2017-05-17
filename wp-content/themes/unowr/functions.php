@@ -675,13 +675,13 @@ function ajax_filter() {
 				7 => array(
 					'type' => 'select',
 					'name' => 'occasion',
-					'question' => 'type de occasion 2',
+					'question' => 'Une envie un peu plus précise ?',
 					'child' => 1,
 				),
 				8 => array(
 					'type' => 'select',
 					'name' => 'ambiance',
-					'question' => 'type de ambiance',
+					'question' => 'Niveau ambiance, tu préfères ?',
 				),
 				9 => array(
 					'type' => 'input',
