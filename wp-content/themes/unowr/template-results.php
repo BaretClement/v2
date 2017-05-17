@@ -132,7 +132,7 @@ get_header('home'); ?>
 						<div class="title"><h2><?php echo $json->resto[$i]->title ?></h2></div>
 						<div class="ui mini tag label"><? echo $json->resto[$i]->category; ?></div>  <div class="ui mini tag label"><? echo $json->resto[$i]->subcategory; ?></div>
 						<div class="text"><p>Prix moyen : <b><?php echo $json->resto[$i]->prix_moyen;  ?>€</b></p></div>
-						<div class="text"><p><?php echo $json->resto[$i]->content ?></p></div>
+						<div class="text"><p><?php echo $json->resto[$i]->description ?></p></div>
 						
 
 						<form method="post" action="<?php echo get_home_url() ?>/confirmation">

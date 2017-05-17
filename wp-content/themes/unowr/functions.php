@@ -612,6 +612,7 @@ function getResult($search){
 				'email' => $customFieds['email'][0],
 				'specialite' => $customFieds['specialite'][0],
 				'prix_moyen' => $customFieds['prix_moyen'][0],
+				'description' => $customFieds['description'][0],
 				'category' => $cat[0]->name,
 				'subcategory' => $cat[1]->name,
 				"ambiances" => $array_ambiances,
