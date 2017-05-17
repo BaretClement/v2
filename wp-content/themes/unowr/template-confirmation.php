@@ -41,18 +41,28 @@ Template Name: confirmation
 <link rel="alternate" type="application/json+oembed" href="<?php echo get_template_directory_uri(); ?>/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A8888%2Funowr_v2%2F">
 <link rel="alternate" type="text/xml+oembed" href="<?php echo get_template_directory_uri(); ?>/wp-json/oembed/1.0/embed?url=http%3A%2F%2Flocalhost%3A8888%2Funowr_v2%2F&amp;format=xml">
 
+<body>
 
+	<div class="ui grid container" style="height: 100vh">
+	<div class="center aligned column" style="margin: auto">
+	<div class="ui center aligned segment" style="padding: 25px">
+		<img src="<?php echo get_template_directory_uri() ?>/css/img/avatar/4.neutral-thanks.svg" class="ui medium image" style="margin: auto; margin-bottom: 50px">
+		<h1 style="margin: 0 !important"><b>Merci!</b></h1>
+		<p style="margin: 0 !important"><br>Ta demande de contact a bien été envoyée.</p>
+		<br>
+		<p>L'intérêt que tu portes à <b>UNOWR</b> compte énormément.
+		<br>Nous te recontacterons très rapidement !</p>
+		<p>En attendant, je te propose de retourner sur la <a href="<?php echo get_home_url() ?>"><b>page d'accueil</b></a> :)</p>
+	</div>
+	</div>
+	</div>
 
-<div class="ui grid container" style="height: 100vh">
-<div class="center aligned column" style="margin: auto">
-<div class="ui center aligned segment" style="padding: 25px">
-	<img src="<?php echo get_template_directory_uri() ?>/css/img/avatar/4.neutral-thanks.svg" class="ui medium image" style="margin: auto; margin-bottom: 50px">
-	<h1 style="margin: 0 !important"><b>Merci!</b></h1>
-	<p style="margin: 0 !important"><br>Ta demande de contact a bien été envoyée.</p>
-	<br>
-	<p>L'intérêt que tu portes à <b>UNOWR</b> compte énormément.
-	<br>Nous te recontacterons très rapidement !</p>
-	<p>En attendant, je te propose de retourner sur la <a href="<?php echo get_home_url() ?>"><b>page d'accueil</b></a> :)</p>
-</div>
-</div>
-</div>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KDMPQMJ');</script>
+<!-- End Google Tag Manager -->
+
+</body>
