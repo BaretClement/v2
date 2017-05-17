@@ -52,7 +52,7 @@ Template Name: confirmation
 	<br>
 	<p>L'intérêt que tu portes à <b>UNOWR</b> compte énormément.
 	<br>Nous te recontacterons très rapidement !</p>
-	<p>En attendant, je te propose de retourner sur la <a href="<?php echo get_home_url() ?>"><b>homepage</b></a> :)</p>
+	<p>En attendant, je te propose de retourner sur la <a href="<?php echo get_home_url() ?>"><b>page d'accueil</b></a> :)</p>
 </div>
 </div>
 </div>

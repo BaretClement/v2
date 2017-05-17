@@ -612,7 +612,8 @@ function getResult($search){
 				'email' => $customFieds['email'][0],
 				'specialite' => $customFieds['specialite'][0],
 				'prix_moyen' => $customFieds['prix_moyen'][0],
-				'description' => $customFieds['description'][0],
+				'description
+				' => $customFieds['description'][0],
 				'category' => $cat[0]->name,
 				'subcategory' => $cat[1]->name,
 				"ambiances" => $array_ambiances,
@@ -642,7 +643,7 @@ function ajax_filter() {
 				1 => array(
 					'type' => 'input',
 					'name' => 'nb_person',
-					'question' => 'Pour combien de personne(s) souhaites-tu rechercher un restaurant ?',
+					'question' => 'Pour combien de personne(s) souhaites-tu réserver ?',
 				),
 				2 => array(
 					'type' => 'input',
