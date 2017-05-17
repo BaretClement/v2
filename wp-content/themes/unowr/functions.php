@@ -601,7 +601,7 @@ function getResult($search){
 				'guid' => $post->guid,
 				'id' => $post->ID,
 				'content' => $post->post_content,
-				'image' => $image['url'] ? $image['url'] : get_template_directory_uri() . '/css/img/picture.svg',
+				'image' => $image['url'] ? $image['url'] : get_template_directory_uri() . '/css/img/picture.jpg',
 				'prenom_du_contact' => $customFieds['prenom_du_contact'][0],
 				'nom_du_contact' => $customFieds['nom_du_contact'][0],
 				'nom_du_restaurant' => $customFieds['nom_du_restaurant'][0],
