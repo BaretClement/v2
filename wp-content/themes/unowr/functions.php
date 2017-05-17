@@ -773,7 +773,7 @@ function ajax_filter() {
 			array_push($taxQuery, array(
 				'taxonomy' => 'type_de_cuisine',
 				'field' 		=> 'slug',
-				'terms'    => $_POST['type_de_cuisine']
+				'terms'    => htmlspecialchars_decode($_POST['type_de_cuisine'])
 			));
 		}
 		if(isset($_POST['prix_moyen']) && !empty($_POST['prix_moyen'])){
