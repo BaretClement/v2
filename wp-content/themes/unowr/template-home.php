@@ -41,7 +41,7 @@ get_header( 'home' ); ?>
       <div class="ui equal width stackable grid">
         <div class="row">
           <div class="column" style="padding: 0 !important">
-            <img src="<?php echo get_template_directory_uri(); ?>/css/img/iphone.svg" class="fluide image" style="max-height: 550px;">
+            <img src="<?php echo get_template_directory_uri(); ?>/css/img/step-1.png" class="fluide image" style="max-height: 550px;">
           </div>
           <div class="middle aligned column" style="padding-bottom: 0 !important">
             <h3><span style="font-family: 'SFDisplay medium'; font-size: 60px; color: #E0E0E0">01.</span><br>
@@ -59,7 +59,7 @@ get_header( 'home' ); ?>
       <div class="ui equal width stackable grid">
         <div class="row">
           <div class="column" style="padding: 0 !important">
-            <img src="<?php echo get_template_directory_uri(); ?>/css/img/iphone.svg" class="fluide image" style="max-height: 550px;">
+            <img src="<?php echo get_template_directory_uri(); ?>/css/img/step-2.png" class="fluide image" style="max-height: 550px;">
           </div>
           <div class="middle aligned column" style="padding-bottom: 0 !important">
             <h3><span style="font-family: 'SFDisplay medium'; font-size: 60px; color: #E0E0E0">02.</span><br>
@@ -77,7 +77,7 @@ get_header( 'home' ); ?>
       <div class="ui equal width stackable grid">
         <div class="row">
           <div class="column" style="padding: 0 !important">
-            <img src="<?php echo get_template_directory_uri(); ?>/css/img/iphone.svg" class="fluide image" style="max-height: 550px;">
+            <img src="<?php echo get_template_directory_uri(); ?>/css/img/step-3.png" class="fluide image" style="max-height: 550px;">
           </div>
           <div class="middle aligned column" style="padding-bottom: 0 !important">
             <h3><span style="font-family: 'SFDisplay medium'; font-size: 60px; color: #E0E0E0">03.</span><br>
