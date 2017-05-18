@@ -636,7 +636,7 @@ function ajax_filter() {
 				0 => array(
 					'type' => 'input',
 					'name' => 'prix_moyen',
-					'question' => 'Quel est ton budget maximum pour un menu ?',
+					'question' => 'Quel est ton budget maximum pour un menu (montant en chiffres) ?',
 				),
 				1 => array(
 					'type' => 'input',
@@ -646,7 +646,7 @@ function ajax_filter() {
 				2 => array(
 					'type' => 'input',
 					'name' => 'telephone',
-					'question' => 'As-tu un numéro auquel nous pourrons te joindre en cas de réservation ?',
+					'question' => "As-tu un numéro auquel nous pourrons te joindre ? Il nous servira seulement à te contacter si tu souhaites réserver.",
 				),
 				3 => array(
 					'type' => 'date',
