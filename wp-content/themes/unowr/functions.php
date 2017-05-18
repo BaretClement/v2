@@ -617,7 +617,6 @@ function getResult($search){
 				'subcategory' => $cat[1]->name,
 				"ambiances" => $array_ambiances,
 			);
-
 		}
 	}
 
@@ -771,7 +770,7 @@ function ajax_filter() {
 		if(isset($_POST['type_de_cuisine']) && !empty($_POST['type_de_cuisine'])){
 			array_push($taxQuery, array(
 				'taxonomy' => 'type_de_cuisine',
-				'field' 		=> 'slug',
+				'field' 		=> 'name',
 				'terms'    => htmlspecialchars_decode($_POST['type_de_cuisine'])
 			));
 		}
