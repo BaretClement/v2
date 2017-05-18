@@ -81,6 +81,13 @@ div.no.padding.column {
   color: #1B1C1D !important
 }
 
+.bottom.left{
+  bottom: 45px !important; 
+  left: -22.5px !important; 
+  top: auto !important; 
+  right: auto !important; 
+  display: block !important;
+}
 /******************* COLORS ********************/
 
 .light.grey {background: #FAFAFA !important; color: rgba(0, 0, 0, 0.87) !important}
