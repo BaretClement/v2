@@ -127,9 +127,9 @@ get_header('home'); ?>
 					<div id="first-result" class="first-content result-content-<?php echo $i; ?>">
 						<div class="title"><h2><?php echo $json->resto[$i]->title ?></h2></div>
 						<div class="ui mini tag label"><? echo $json->resto[$i]->category; ?></div>  <div class="ui mini tag label"><? echo $json->resto[$i]->subcategory; ?></div>
-						<div class="text"><p>Prix moyen : <b><?php echo $json->resto[$i]->prix_moyen;  ?>€</b></p></div>
+						<div class="text"><p><u>Prix moyen</u> : <?php echo $json->resto[$i]->prix_moyen;  ?>€</p></div>
 						<div class="text"><p><?php echo $json->resto[$i]->description ?></p></div>
-						<div class="text"><p>Adresse : <b><br><?php echo $json->resto[$i]->adresse ?><br><?php echo $json->resto[$i]->code_postal ?> <?php echo $json->resto[$i]->ville ?></b></p></div>
+						<div class="text"><p><u>Adresse</u> : <br><?php echo $json->resto[$i]->adresse ?><br><?php echo $json->resto[$i]->code_postal ?> <?php echo $json->resto[$i]->ville ?></p></div>
 						
 
 						<form method="post" action="<?php echo get_home_url() ?>/confirmation">
