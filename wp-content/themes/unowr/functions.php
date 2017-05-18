@@ -640,14 +640,15 @@ function ajax_filter() {
 				),
 				1 => array(
 					'type' => 'input',
-					'name' => 'nb_person',
-					'question' => 'Pour combien de personne(s) souhaites-tu réserver ?',
-				),
-				2 => array(
-					'type' => 'input',
 					'name' => 'telephone',
 					'question' => "As-tu un numéro auquel nous pourrons te joindre ? Il nous servira seulement à te contacter si tu souhaites réserver.",
 				),
+				2 => array(
+					'type' => 'input',
+					'name' => 'nb_person',
+					'question' => 'Pour combien de personne(s) souhaites-tu réserver ?',
+				),
+
 				3 => array(
 					'type' => 'date',
 					'name' => 'agenda',
@@ -681,11 +682,6 @@ function ajax_filter() {
 					'type' => 'select',
 					'name' => 'ambiance',
 					'question' => 'Niveau ambiance, tu préfères ?',
-				),
-				9 => array(
-					'type' => 'input',
-					'name' => 'nb_person',
-					'question' => 'nombre de personne ?',
 				),
 			);
 
