@@ -38,7 +38,7 @@ $(document).ready(function() {
       // url: "https://formspree.io/fabrice.labbe@adfab.fr", 
       method: "POST",
       data: {
-        _cc: 'new_email@test.com',
+        _cc: 'reservation@unowrteam.mailclark.ai',
         message:  "Informations utilisateur" + 
                   "\n " + 
                   "\n " + "Nom : " + infos["name"] + 
