@@ -4,16 +4,12 @@ Template Name: resultats
 */
 
 get_header('home'); ?>
-
-<div id="message_results_page" class="ui two column stackable grid container; <?php echo $hidden ?>">
-	<div class="bottom aligned column" style="padding-bottom: 0 !important">
-		<img src="<?php echo get_template_directory_uri(); ?>/css/img/avatar/4.neutral-thanks.svg" class="ui large right floated rounded image" style="margin: auto !important">
-	</div>
+<div class="ui grid container" style="min-height: 700px">
 	<div class="middle aligned column">
-		<div class="talk-bubble tri-right left-in">
-  			<div class="talktext">
-    			<p>Voici les restaurants qui devraient te plaire !</p>
-  			</div>
+		<div>
+			<h1>Voici les restaurants que nous avons trouvé.</h1>
+			<br>
+			<i class="ui angle down big icon"></i>
 		</div>
 	</div>
 </div>
@@ -133,6 +129,7 @@ get_header('home'); ?>
 						<div class="ui mini tag label"><? echo $json->resto[$i]->category; ?></div>  <div class="ui mini tag label"><? echo $json->resto[$i]->subcategory; ?></div>
 						<div class="text"><p>Prix moyen : <b><?php echo $json->resto[$i]->prix_moyen;  ?>€</b></p></div>
 						<div class="text"><p><?php echo $json->resto[$i]->description ?></p></div>
+						<div class="text"><p>Adresse : <b><br><?php echo $json->resto[$i]->adresse ?><br><?php echo $json->resto[$i]->code_postal ?> <?php echo $json->resto[$i]->ville ?></b></p></div>
 						
 
 						<form method="post" action="<?php echo get_home_url() ?>/confirmation">
