@@ -7,7 +7,7 @@ get_header('home'); ?>
 <div class="ui grid container" style="min-height: 700px">
 	<div class="middle aligned column">
 		<div>
-			<h1>Voici les restaurants que nous avons trouvé.</h1>
+			<h1>Voici les restaurants que nous avons trouvés.</h1>
 			<br>
 			<i class="ui angle down big icon"></i>
 		</div>
