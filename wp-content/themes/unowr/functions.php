@@ -641,7 +641,7 @@ function ajax_filter() {
 				1 => array(
 					'type' => 'input',
 					'name' => 'telephone',
-					'question' => "As-tu un numéro auquel nous pourrons te joindre ? Il nous servira seulement à te contacter si tu souhaites réserver.",
+					'question' => "Quel est ton numéro de téléphone ? Il nous servira seulement à te contacter si tu souhaites réserver et ne sera jamais utilisé à d'autres fins.",
 				),
 				2 => array(
 					'type' => 'input',
