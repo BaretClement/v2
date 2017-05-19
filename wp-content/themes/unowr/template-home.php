@@ -12,7 +12,7 @@ get_header( 'home' ); ?>
 
     <div class="ui text container">
       <h1 class="ui inverted header">UNOWR</h1>
-      <h2>Trouve le restaurant <b>idéal</b> pour un moment <b>parfait</b> !</h2>
+      <h2>Trouve le restaurant <b>idéal</b> pour un moment <b>parfait</b>, à <b>Paris</b> !</h2>
       <p>Simple, rapide, efficace & gratuit !</p>
       <a href="<?php echo get_template_directory_uri(); ?>/rechercher-un-restaurant"><button class="snip1535">Chercher un restaurant</button></a>
     </div>
