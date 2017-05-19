@@ -26,6 +26,7 @@ get_header( 'home' ); ?>
           <div class="ui container">
             <h2 class="ui header">Nous te trouvons le restaurant qu'il te faut !</h2>
             <p>Nous te posons une série de questions afin de connaitre tes envies du moment, puis nous te proposons trois restaurants les plus pertinents. Tu n'as plus qu'à choisir celui que tu préfères !</p>
+            <p>Uniquement à Paris... pour le moment !</p>
           </div>
         </div>
         <div class="six wide right floated column">
