@@ -88,7 +88,7 @@ img.emoji {
 	<!-- Following Menu -->
 	<div class="ui large top fixed menu inverted transition hidden">
 		<div class="item">
-			<a class="toc item"><i class="sidebar large icon"></i></a>
+			<a class="toc item"><i class="sidebar large icon" style="color: #FFF !important"></i></a>
 		</div>
 		<div class="right item">
 			<div class="item">
