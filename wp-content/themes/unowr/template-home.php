@@ -30,7 +30,7 @@ get_header( 'home' ); ?>
           </div>
         </div>
         <div class="six wide right floated column">
-          <img src="<?php echo get_template_directory_uri(); ?>/css/img/avatar/4.neutral-thanks.svg" class="ui large rounded image" style="margin: auto !important">
+          <img src="<?php echo get_template_directory_uri(); ?>/css/img/avatar/4.neutral-thanks.svg" class="ui large rounded hvr-bob image" style="margin: auto !important">
         </div>
       </div>
     </div>
@@ -126,17 +126,17 @@ function showDivs(n) {
   <div class="ui vertical stripe">
 <div id="concept-part" class="ui center aligned equal width stackable three quarter height grid container"> 
       <div class="row">
-        <div class="middle aligned column">
+        <div class="middle aligned hvr-grow column">
           <img src="<?php echo get_template_directory_uri(); ?>/css/img/stopwatch.svg" class="ui tiny image" style="margin: auto !important">
           <h2>2 minutes</h2>
           <p>C'est le temps qu'il te faudra pour trouver LE restaurant parfait.</p>
         </div>
-        <div class="middle aligned column">
+        <div class="middle aligned hvr-grow column">
           <img src="<?php echo get_template_directory_uri(); ?>/css/img/box.svg" class="ui tiny image" style="margin: auto !important"> 
           <h2>8 questions (max)</h2>
           <p>C'est tout ce dont nous avons besoin pour connaître tes envies.</p>
         </div>
-        <div class="middle aligned column">
+        <div class="middle aligned hvr-grow column">
           <img src="<?php echo get_template_directory_uri(); ?>/css/img/store-concept.svg" class="ui tiny image" style="margin: auto !important">
           <h2>3 restaurants</h2>
           <p>C'est le nombre de résultats proposés. Tu n'as plus qu'à choisir !</p>
