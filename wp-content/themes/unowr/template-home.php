@@ -35,7 +35,7 @@ get_header( 'home' ); ?>
       </div>
     </div>
   </div>
-    
+
 <div class="black">
   <div class="ui container w3-content">    
   <div class="mySlides ui vertical stripe quote">
@@ -155,9 +155,9 @@ function showDivs(n) {
           <div class="column">
               <h2>Nous sommes connectés !</h2>
               <p>Retrouve nous sur les réseaux sociaux.</p>
-              <button class="ui massive basic teal inverted icon button"><i class="icon twitter"></i></button>
-              <button class="ui massive basic blue inverted icon button"><i class="icon facebook f"></i></button>
-              <button class="ui massive basic purple inverted icon button"><i class="icon instagram"></i></button>
+              <a href="https://twitter.com/unowr"><button class="ui massive basic teal inverted icon button"><i class="icon twitter"></i></button></a>
+              <a href="https://www.facebook.com/UNOWR/"><button class="ui massive basic blue inverted icon button"><i class="icon facebook f"></i></button></a>
+              <a href="https://www.instagram.com/unowr/?hl=fr"><button class="ui massive basic purple inverted icon button"><i class="icon instagram"></i></button></a>
               <br><br>
               <p>Ou contacte nous par e-mail :<br> 
               <u>contact@unowr.fr</u></p>
